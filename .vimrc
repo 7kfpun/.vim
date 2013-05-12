@@ -1,4 +1,4 @@
-et nocompatible  " No compatibility with vi, enable vim features
+set nocompatible  " No compatibility with vi, enable vim features
 
 set backupdir=$HOME/.cache/vim/backup      " where to put backup file
 set backup                                 " make backup file and leave it around
@@ -106,7 +106,7 @@ if &term =~ "xterm"
     set t_Co=256            " set 256 colors
 endif
 
-colo wombat256mod
+colo jellybeans
 
 let mapleader = ","
 
