@@ -106,7 +106,7 @@ if &term =~ "xterm"
     set t_Co=256            " set 256 colors
 endif
 
-colo jellybeans
+colo wombat256mod
 
 let mapleader = ","
 
