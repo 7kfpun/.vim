@@ -128,3 +128,28 @@ set secure
 " Personal settings
 " Index dot files for CtrlP
 let g:ctrlp_show_hidden = 1
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" Common command line typos
+cmap W w
+cmap Q q"
+
+set nobackup        " do not keep a backup file
+set number          " show line numbers
+
+
+" If the current buffer has never been saved, it will have no name,
+" call the file browser to save it, otherwise just save it.
+command -nargs=0 -bar Update if &modified 
+                           \|    if empty(bufname('%'))
+                           \|        browse confirm write
+                           \|    else
+                           \|        confirm write
+                           \|    endif
+                           \|endif
+" Use CTRL-S for saving, also in Insert mode
+nnoremap <C-S> :<C-u>Update<CR>
+vnoremap <C-S> <C-C> <Esc>:Update<CR>
+inoremap <C-S> <Esc>:Update<CR>
