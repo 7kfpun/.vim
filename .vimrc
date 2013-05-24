@@ -124,3 +124,7 @@ set exrc
 " must be written at the last.  see :help 'secure'.
 set secure
 
+
+" Personal settings
+" Index dot files for CtrlP
+let g:ctrlp_show_hidden = 1
