@@ -132,6 +132,9 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
+" Shortcut for Ack
+nmap <leader>a <Esc>:Ack!
+
 " Common command line typos
 cmap W w
 cmap Q q"
