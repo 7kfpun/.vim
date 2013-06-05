@@ -126,6 +126,8 @@ set secure
 
 
 " Personal settings
+set noswapfile
+
 " Index dot files for CtrlP
 let g:ctrlp_show_hidden = 1
 
