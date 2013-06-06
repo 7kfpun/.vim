@@ -131,12 +131,6 @@ set noswapfile
 set nobackup        " do not keep a backup file
 set number          " show line numbers
 
-" Index dot files for CtrlP
-let g:ctrlp_show_hidden = 1
-
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
 " Shortcut for Ack
 nmap <leader>a <Esc>:Ack!
 
@@ -160,3 +154,21 @@ command -nargs=0 -bar Update if &modified
 nnoremap <C-S> :<C-u>Update<CR>
 vnoremap <C-S> <C-C> <Esc>:Update<CR>
 inoremap <C-S> <Esc>:Update<CR>
+
+" ,/ turn off search highlighting
+nmap <leader>/ :nohl<CR>
+
+" --- TagBar
+" toggle TagBar with F7
+nnoremap <silent> <F7> :TagbarToggle<CR> 
+" set focus to TagBar when opening it
+let g:tagbar_autofocus = 1
+
+" --- CtrlP
+" Index dot files
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" --- Conque
+nnoremap <silent> <F5> :ConqueTerm bash<CR> 
