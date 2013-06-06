@@ -127,6 +127,8 @@ set secure
 
 " Personal settings
 set noswapfile
+set nobackup        " do not keep a backup file
+set number          " show line numbers
 
 " Index dot files for CtrlP
 let g:ctrlp_show_hidden = 1
@@ -141,9 +143,8 @@ nmap <leader>a <Esc>:Ack!
 cmap W w
 cmap Q q"
 
-set nobackup        " do not keep a backup file
-set number          " show line numbers
-
+" Split screen when vim starts up
+au VimEnter * vsplit
 
 " If the current buffer has never been saved, it will have no name,
 " call the file browser to save it, otherwise just save it.
