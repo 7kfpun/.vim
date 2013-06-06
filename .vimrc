@@ -160,7 +160,7 @@ nmap <leader>/ :nohl<CR>
 
 " --- TagBar
 " toggle TagBar with F7
-nnoremap <silent> <F7> :TagbarToggle<CR> 
+nnoremap <silent> <F7> :TagbarToggle<CR>
 " set focus to TagBar when opening it
 let g:tagbar_autofocus = 1
 
@@ -171,4 +171,4 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 " --- Conque
-nnoremap <silent> <F5> :ConqueTerm bash<CR> 
+nnoremap <silent> <F5> :ConqueTerm bash<CR>
