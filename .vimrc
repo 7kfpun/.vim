@@ -172,3 +172,6 @@ let g:ctrlp_cmd = 'CtrlP'
 
 " --- Conque
 nnoremap <silent> <F5> :ConqueTerm bash<CR>
+
+" --- Python-mode                                
+let g:pymode_lint_ignore = "E501,C901"
