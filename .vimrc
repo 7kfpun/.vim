@@ -131,6 +131,30 @@ set noswapfile
 set nobackup        " do not keep a backup file
 set number          " show line numbers
 
+" Quick vertical split
+nnoremap <leader>w <C-w>v
+" Switch splits with <C-h> & <C-l>
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" Set the minimal split width
+set winwidth=40
+set winminwidth=40
+
+" Using <leader>=, toggle the width of the current split. If it's set to 999, it
+" takes up as much space as possible, without pushing the other ones under 60
+" columns. The other option makes sure all splits are equally wide.
+function! SplitToggle()
+    if(&winwidth == &winminwidth)
+        set winwidth=999
+    else
+        set winwidth=60
+        wincmd =
+    endif
+endfunc
+
+nnoremap <leader>= :call SplitToggle()<cr>
+
 " Shortcut for Ack
 nmap <leader>a <Esc>:Ack!
 
@@ -170,8 +194,26 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
-" --- Conque
-nnoremap <silent> <F5> :ConqueTerm bash<CR>
+" --- My F functions
+noremap <silent> <F3> :call ToggleNumbers()<CR>
+noremap <silent> <F4> :NERDTreeToggle<CR>
+noremap <silent> <F5> :ConqueTerm bash<CR>
 
 " --- Python-mode                                
 let g:pymode_lint_ignore = "E501,C901"
+
+function! ToggleNumbers()
+    if !exists('s:cur')
+        let s:cur = -1
+    else
+        let s:cur = (s:cur + 1) % 3
+    endif
+
+    if s:cur == 0
+        set nornu nonu
+    elseif &rnu == 1
+        set nu
+    else
+        set rnu
+    endif
+endfunction
