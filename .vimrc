@@ -134,6 +134,8 @@ set number          " show line numbers
 " Quick vertical split
 nnoremap <leader>w <C-w>v
 " Switch splits with <C-h> & <C-l>
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
@@ -156,6 +158,7 @@ endfunc
 nnoremap <leader>= :call SplitToggle()<cr>
 
 " Shortcut for Ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
 nmap <leader>a <Esc>:Ack!
 
 " Common command line typos
@@ -198,10 +201,19 @@ let g:ctrlp_cmd = 'CtrlP'
 noremap <silent> <F3> :call ToggleNumbers()<CR>
 noremap <silent> <F4> :NERDTreeToggle<CR>
 noremap <silent> <F5> :ConqueTerm bash<CR>
+noremap <silent> <F6> :Gblame<CR>
 
 " --- Python-mode                                
-let g:pymode_lint_ignore = "E501,C901"
+let g:pymode_lint_ignore = "C901"
 
+" Ctrl-j/k deletes blank line below/above, and Alt-j/k inserts.
+nnoremap <silent><C-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
+nnoremap <silent><C-k> m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
+nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+
+" 
+" --- Personal function
 function! ToggleNumbers()
     if !exists('s:cur')
         let s:cur = -1
