@@ -21,6 +21,7 @@ call pathogen#infect()
 call pathogen#helptags()
 syntax on
 filetype plugin indent on
+runtime bundle/powerline/powerline/bindings/vim/plugin/powerline.vim
 
 " Buffer options
 set hidden                  " hide buffers when they are abandoned
@@ -126,19 +127,46 @@ set secure
 
 
 " Personal settings
-" Index dot files for CtrlP
-let g:ctrlp_show_hidden = 1
+set noswapfile
+set nobackup        " do not keep a backup file
+set number          " show line numbers
 
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+" Quick vertical split
+nnoremap <leader>w <C-w>v
+" Switch splits with <C-h> & <C-l>
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" Set the minimal split width
+set winwidth=40
+set winminwidth=40
+
+" Using <leader>=, toggle the width of the current split. If it's set to 999, it
+" takes up as much space as possible, without pushing the other ones under 60
+" columns. The other option makes sure all splits are equally wide.
+function! SplitToggle()
+    if(&winwidth == &winminwidth)
+        set winwidth=999
+    else
+        set winwidth=60
+        wincmd =
+    endif
+endfunc
+
+nnoremap <leader>= :call SplitToggle()<cr>
+
+" Shortcut for Ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
+nmap <leader>a <Esc>:Ack!
 
 " Common command line typos
 cmap W w
 cmap Q q"
 
-set nobackup        " do not keep a backup file
-set number          " show line numbers
-
+" Split screen when vim starts up
+au VimEnter * vsplit
 
 " If the current buffer has never been saved, it will have no name,
 " call the file browser to save it, otherwise just save it.
@@ -153,3 +181,51 @@ command -nargs=0 -bar Update if &modified
 nnoremap <C-S> :<C-u>Update<CR>
 vnoremap <C-S> <C-C> <Esc>:Update<CR>
 inoremap <C-S> <Esc>:Update<CR>
+
+" ,/ turn off search highlighting
+nmap <leader>/ :nohl<CR>
+
+" --- TagBar
+" toggle TagBar with F7
+nnoremap <silent> <F7> :TagbarToggle<CR>
+" set focus to TagBar when opening it
+let g:tagbar_autofocus = 1
+
+" --- CtrlP
+" Index dot files
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" --- My F functions
+noremap <silent> <F3> :call ToggleNumbers()<CR>
+noremap <silent> <F4> :NERDTreeToggle<CR>
+noremap <silent> <F5> :ConqueTerm bash<CR>
+noremap <silent> <F6> :Gblame<CR>
+
+" --- Python-mode                                
+let g:pymode_lint_ignore = "C901"
+
+" Ctrl-j/k deletes blank line below/above, and Alt-j/k inserts.
+nnoremap <silent><C-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
+nnoremap <silent><C-k> m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
+nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+
+" 
+" --- Personal function
+function! ToggleNumbers()
+    if !exists('s:cur')
+        let s:cur = -1
+    else
+        let s:cur = (s:cur + 1) % 3
+    endif
+
+    if s:cur == 0
+        set nornu nonu
+    elseif &rnu == 1
+        set nu
+    else
+        set rnu
+    endif
+endfunction
