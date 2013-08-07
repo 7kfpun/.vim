@@ -20,7 +20,6 @@ call pathogen#infect()
 call pathogen#helptags()
 syntax on
 filetype plugin indent on
-runtime bundle/powerline/powerline/bindings/vim/plugin/powerline.vim
 
 " Buffer options
 set hidden                  " hide buffers when they are abandoned
