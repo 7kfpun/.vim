@@ -224,18 +224,18 @@ nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " 
 " --- Personal function
-function! ToggleNumbers()
-    if !exists('s:cur')
-        let s:cur = -1
-    else
-        let s:cur = (s:cur + 1) % 3
-    endif
+"function! ToggleNumbers()
+    "if !exists('s:cur')
+        "let s:cur = -1
+    "else
+        "let s:cur = (s:cur + 1) % 3
+    "endif
 
-    if s:cur == 0
-        set nornu nonu
-    elseif &rnu == 1
-        set nu
-    else
-        set rnu
-    endif
-endfunction
+    "if s:cur == 0
+        "set nornu nonu
+    "elseif &rnu == 1
+        "set nu
+    "else
+        "set rnu
+    "endif
+"endfunction

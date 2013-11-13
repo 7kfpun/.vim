@@ -46,3 +46,15 @@
 [submodule "bundle/vim-startify"]
 	path = bundle/vim-startify
 	url = https://github.com/mhinz/vim-startify.git
+[submodule "bundle/SudoEdit"]
+	path = bundle/SudoEdit
+	url = git@github.com:chrisbra/SudoEdit.vim.git
+[submodule "bundle/easymotion"]
+	path = bundle/easymotion
+	url = git@github.com:Lokaltog/vim-easymotion.git
+[submodule "bundle/riv"]
+	path = bundle/riv
+	url = https://github.com/Rykka/riv.vim
+[submodule "/home/jp/.vim/bundle/vim-airline"]
+	path = /home/jp/.vim/bundle/vim-airline
+	url = https://github.com/bling/vim-airline
