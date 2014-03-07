@@ -209,12 +209,13 @@ noremap <silent> <F3> :call ToggleNumbers()<CR>
 noremap <silent> <F4> :NERDTreeToggle<CR>
 noremap <silent> <F5> :ConqueTerm bash<CR>
 noremap <silent> <F6> :Gblame<CR>
+noremap <silent> <F8> :SignatureToggle<CR>
 nnoremap <F10> :set invpaste paste?<CR>
 set pastetoggle=<F10>
 set showmode
 
 " --- Python-mode                                
-let g:pymode_lint_ignore = "C901"
+let g:pymode_lint_ignore = "C901,C0110"
 
 " Ctrl-j/k deletes blank line below/above, and Alt-j/k inserts.
 nnoremap <silent><C-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>

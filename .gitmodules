@@ -52,3 +52,6 @@
 [submodule "bundle/jedi-vim"]
 	path = bundle/jedi-vim
 	url = git@github.com:davidhalter/jedi-vim.git
+[submodule "bundle/vim-signature"]
+	path = bundle/vim-signature
+	url = git@github.com:kshenoy/vim-signature.git
