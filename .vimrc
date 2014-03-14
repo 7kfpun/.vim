@@ -69,7 +69,7 @@ set matchpairs+=<:>         " Make < and > match as well
 
 " Localization
 set langmenu=none            " Always use english menu
-set keymap=russian-jcukenwin " Alternative keymap
+" set keymap=russian-jcukenwin " Alternative keymap
 set iminsert=0               " English by default
 set imsearch=-1              " Search keymap from insert mode
 set spelllang=en,ru          " Languages
