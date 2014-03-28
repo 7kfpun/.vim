@@ -105,7 +105,9 @@ if &term =~ "xterm"
     set t_Co=256            " set 256 colors
 endif
 
-colo wombat256mod
+colo wombat256mod  " default
+autocmd! BufEnter,BufNewFile *.html,*.vim,*xml,*.js colo mustang
+autocmd! BufLeave *.html,*.vim,*xml,&.js colo wombat256mod
 
 let mapleader = ","
 
