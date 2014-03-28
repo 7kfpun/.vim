@@ -107,7 +107,7 @@ endif
 
 colo wombat256mod  " default
 autocmd! BufEnter,BufNewFile *.html,*.vim,*xml,*.js colo mustang
-autocmd! BufLeave *.html,*.vim,*xml,&.js colo wombat256mod
+autocmd! BufLeave *.html,*.vim,*xml,*.js colo wombat256mod
 
 let mapleader = ","
 
