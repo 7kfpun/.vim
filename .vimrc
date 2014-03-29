@@ -1,5 +1,4 @@
 set nocompatible  " No compatibility with vi, enable vim features
-
 set backupdir=$HOME/.cache/vim/backup      " where to put backup file
 set backup                                 " make backup file and leave it around
 set backupskip+=svn-commit.tmp,svn-commit.[0-9]*.tmp
@@ -21,7 +20,6 @@ call pathogen#infect()
 call pathogen#helptags()
 syntax on
 filetype plugin indent on
-runtime bundle/powerline/powerline/bindings/vim/plugin/powerline.vim
 
 " Buffer options
 set hidden                  " hide buffers when they are abandoned
@@ -211,6 +209,9 @@ noremap <silent> <F3> :call ToggleNumbers()<CR>
 noremap <silent> <F4> :NERDTreeToggle<CR>
 noremap <silent> <F5> :ConqueTerm bash<CR>
 noremap <silent> <F6> :Gblame<CR>
+nnoremap <F10> :set invpaste paste?<CR>
+set pastetoggle=<F10>
+set showmode
 
 " --- Python-mode                                
 let g:pymode_lint_ignore = "C901"
