@@ -69,7 +69,7 @@ set matchpairs+=<:>         " Make < and > match as well
 
 " Localization
 set langmenu=none            " Always use english menu
-set keymap=russian-jcukenwin " Alternative keymap
+" set keymap=russian-jcukenwin " Alternative keymap
 set iminsert=0               " English by default
 set imsearch=-1              " Search keymap from insert mode
 set spelllang=en,ru          " Languages
@@ -105,7 +105,9 @@ if &term =~ "xterm"
     set t_Co=256            " set 256 colors
 endif
 
-colo wombat256mod
+colo wombat256mod  " default
+autocmd! BufEnter,BufNewFile *.html,*.vim,*xml,*.js colo mustang
+autocmd! BufLeave *.html,*.vim,*xml,*.js colo wombat256mod
 
 let mapleader = ","
 
@@ -209,12 +211,13 @@ noremap <silent> <F3> :call ToggleNumbers()<CR>
 noremap <silent> <F4> :NERDTreeToggle<CR>
 noremap <silent> <F5> :ConqueTerm bash<CR>
 noremap <silent> <F6> :Gblame<CR>
+noremap <silent> <F8> :SignatureToggle<CR>
 nnoremap <F10> :set invpaste paste?<CR>
 set pastetoggle=<F10>
 set showmode
 
 " --- Python-mode                                
-let g:pymode_lint_ignore = "C901"
+let g:pymode_lint_ignore = "C901,C0110"
 
 " Ctrl-j/k deletes blank line below/above, and Alt-j/k inserts.
 nnoremap <silent><C-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
@@ -224,18 +227,18 @@ nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " 
 " --- Personal function
-function! ToggleNumbers()
-    if !exists('s:cur')
-        let s:cur = -1
-    else
-        let s:cur = (s:cur + 1) % 3
-    endif
+"function! ToggleNumbers()
+    "if !exists('s:cur')
+        "let s:cur = -1
+    "else
+        "let s:cur = (s:cur + 1) % 3
+    "endif
 
-    if s:cur == 0
-        set nornu nonu
-    elseif &rnu == 1
-        set nu
-    else
-        set rnu
-    endif
-endfunction
+    "if s:cur == 0
+        "set nornu nonu
+    "elseif &rnu == 1
+        "set nu
+    "else
+        "set rnu
+    "endif
+"endfunction
