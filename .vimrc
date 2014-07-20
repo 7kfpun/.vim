@@ -16,10 +16,42 @@ endif
 
 " Load pathogen with docs for all plugins
 filetype off
-call pathogen#infect()
-call pathogen#helptags()
+" call pathogen#infect()
+" call pathogen#helptags()
 syntax on
 filetype plugin indent on
+
+set rtp+=$HOME/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'scrooloose/nerdtree.git'
+Bundle 'majutsushi/tagbar.git'
+Bundle 'scrooloose/nerdcommenter.git'
+Bundle 'tpope/vim-surround.git'
+Bundle 'tpope/vim-fugitive.git'
+Bundle 'vim-scripts/TaskList.vim.git'
+Bundle 'mileszs/ack.vim.git'
+Bundle 'kien/ctrlp.vim.git'
+Bundle 'klen/python-mode.git'
+Bundle 'sjl/gundo.vim.git'
+Bundle 'vim-scripts/taglist.vim.git'
+Bundle 'ervandew/supertab'
+Bundle 'kana/vim-fakeclip.git'
+Bundle 'bling/vim-airline.git'
+Bundle 'chrisbra/SudoEdit.vim.git'
+Bundle 'davidhalter/jedi-vim.git'
+Bundle 'kshenoy/vim-signature.git'
+Bundle 'mattn/emmet-vim.git'
+Bundle 'pangloss/vim-javascript.git'
+
+" Bundle 'aperezdc/vim-template.git'
+" Bundle 'drmingdrmer/xptemplate.git'
+
+" Bundle 'derekwyatt/vim-scala.git'
+" Bundle 'kana/vim-fakeclip.git'
+" Bundle 'kien/ctrlp.vim.git'
 
 " Buffer options
 set hidden                  " hide buffers when they are abandoned
