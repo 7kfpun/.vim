@@ -47,6 +47,7 @@ Bundle 'sukima/xmledit.git'
 Bundle 'tpope/vim-abolish'
 Bundle 'danro/rename.vim'
 Bundle 'Yggdroot/indentLine'
+Bundle 'vim-scripts/HTML-AutoCloseTag'
 
 " Bundle 'aperezdc/vim-template.git'
 " Bundle 'drmingdrmer/xptemplate.git'
