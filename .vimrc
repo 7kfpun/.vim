@@ -46,6 +46,7 @@ Bundle 'othree/html5.vim'
 Bundle 'sukima/xmledit.git'
 Bundle 'tpope/vim-abolish'
 Bundle 'danro/rename.vim'
+Bundle 'Yggdroot/indentLine'
 
 " Bundle 'aperezdc/vim-template.git'
 " Bundle 'drmingdrmer/xptemplate.git'
@@ -143,8 +144,8 @@ if &term =~ "xterm"
 endif
 
 colo wombat256mod  " default
-autocmd! BufEnter,BufNewFile *.html,*.vim,*xml,*.js colo mustang
-autocmd! BufLeave *.html,*.vim,*xml,*.js colo wombat256mod
+" autocmd! BufEnter,BufNewFile *.html,*.vim,*xml,*.js colo mustang
+" autocmd! BufLeave *.html,*.vim,*xml,*.js colo wombat256mod
 
 let mapleader = ","
 
@@ -258,3 +259,7 @@ au VimEnter * vsplit
 
 " Start NERDTree when vim starts up
 autocmd VimEnter * NERDTree
+
+" Set indent line
+let g:indentLine_char = '┊'
+let g:indentLine_color_term = 239
