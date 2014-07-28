@@ -242,6 +242,8 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
+set wildignore+=*/bower_components/*,*/node_modules/*
+
 " --- My F functions
 noremap <silent> <F3> :call ToggleNumbers()<CR>
 noremap <silent> <F4> :NERDTreeToggle<CR>
@@ -264,3 +266,6 @@ autocmd VimEnter * NERDTree
 " Set indent line
 let g:indentLine_char = '┊'
 let g:indentLine_color_term = 239
+
+" --- NERDTree
+let NERDTreeIgnore = ['\.pyc$']
