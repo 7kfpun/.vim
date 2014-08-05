@@ -258,7 +258,7 @@ set showmode
 let g:pymode_lint_ignore = "C901,C0110"
 
 " Split screen when vim starts up
-au VimEnter * vsplit
+" au VimEnter * vsplit
 
 " Start NERDTree when vim starts up
 autocmd VimEnter * NERDTree
@@ -268,4 +268,13 @@ let g:indentLine_char = '┊'
 let g:indentLine_color_term = 239
 
 " --- NERDTree
-let NERDTreeIgnore = ['\.pyc$']
+" files/dirs to ignore in NERDTree
+let NERDTreeIgnore=['\~$', '\.AppleDouble$', '\.beam$', 'build$',
+\'dist$', '\.DS_Store$', '\.egg$', '\.egg-info$', '\.la$',
+\'\.lo$', '\.\~lock.*#$', '\.mo$', '\.o$', '\.pt.cache$',
+\'\.pyc$', '\.pyo$', '__pycache__$', '\.Python$', '\..*.rej$',
+\'\.rej$', '\.ropeproject$', '\.svn$', '\.tags$' ]
+
+" --- NERDCommenter
+let NERDSpaceDelims = 1
+let g:NERDCustomDelimiters = { 'ansible': { 'left': '#'} }
