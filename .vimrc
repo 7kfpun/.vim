@@ -48,6 +48,7 @@ Bundle 'tpope/vim-abolish'
 Bundle 'danro/rename.vim'
 Bundle 'Yggdroot/indentLine'
 Bundle 'vim-scripts/HTML-AutoCloseTag'
+Bundle 'Valloric/MatchTagAlways'
 
 " Bundle 'aperezdc/vim-template.git'
 " Bundle 'drmingdrmer/xptemplate.git'
@@ -258,7 +259,7 @@ set showmode
 let g:pymode_lint_ignore = "C901,C0110"
 
 " Split screen when vim starts up
-au VimEnter * vsplit
+" au VimEnter * vsplit
 
 " Start NERDTree when vim starts up
 autocmd VimEnter * NERDTree
@@ -269,3 +270,6 @@ let g:indentLine_color_term = 239
 
 " --- NERDTree
 let NERDTreeIgnore = ['\.pyc$']
+
+" --- NERDCommenter
+let NERDSpaceDelims = 1
