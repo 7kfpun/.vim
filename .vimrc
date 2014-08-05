@@ -49,12 +49,12 @@ Bundle 'danro/rename.vim'
 Bundle 'Yggdroot/indentLine'
 Bundle 'vim-scripts/HTML-AutoCloseTag'
 
+Bundle 'fisadev/vim-isort'
+
 " Bundle 'aperezdc/vim-template.git'
 " Bundle 'drmingdrmer/xptemplate.git'
 
 " Bundle 'derekwyatt/vim-scala.git'
-" Bundle 'kana/vim-fakeclip.git'
-" Bundle 'kien/ctrlp.vim.git'
 
 " All of your Plugins must be added before the following line
 " call vundle#end()            " required
@@ -278,3 +278,7 @@ let NERDTreeIgnore=['\~$', '\.AppleDouble$', '\.beam$', 'build$',
 " --- NERDCommenter
 let NERDSpaceDelims = 1
 let g:NERDCustomDelimiters = { 'ansible': { 'left': '#'} }
+
+" --- Isort
+let g:vim_isort_map = '<C-i>'
+
