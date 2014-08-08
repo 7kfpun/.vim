@@ -54,8 +54,6 @@ Bundle 'Valloric/MatchTagAlways'
 " Bundle 'drmingdrmer/xptemplate.git'
 
 " Bundle 'derekwyatt/vim-scala.git'
-" Bundle 'kana/vim-fakeclip.git'
-" Bundle 'kien/ctrlp.vim.git'
 
 " All of your Plugins must be added before the following line
 " call vundle#end()            " required
@@ -269,7 +267,13 @@ let g:indentLine_char = '┊'
 let g:indentLine_color_term = 239
 
 " --- NERDTree
-let NERDTreeIgnore = ['\.pyc$']
+" files/dirs to ignore in NERDTree
+let NERDTreeIgnore=['\~$', '\.AppleDouble$', '\.beam$', 'build$',
+\'dist$', '\.DS_Store$', '\.egg$', '\.egg-info$', '\.la$',
+\'\.lo$', '\.\~lock.*#$', '\.mo$', '\.o$', '\.pt.cache$',
+\'\.pyc$', '\.pyo$', '__pycache__$', '\.Python$', '\..*.rej$',
+\'\.rej$', '\.ropeproject$', '\.svn$', '\.tags$' ]
 
 " --- NERDCommenter
 let NERDSpaceDelims = 1
+let g:NERDCustomDelimiters = { 'ansible': { 'left': '#'} }
