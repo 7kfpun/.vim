@@ -26,7 +26,8 @@ Bundle 'majutsushi/tagbar.git'
 Bundle 'scrooloose/nerdcommenter.git'
 Bundle 'tpope/vim-surround.git'
 Bundle 'tpope/vim-fugitive.git'
-Bundle 'vim-scripts/TaskList.vim.git'
+" Bundle 'vim-scripts/TaskList.vim.git'
+Bundle 'JessicaKMcIntosh/TagmaTasks'
 Bundle 'mileszs/ack.vim.git'
 Bundle 'kien/ctrlp.vim.git'
 Bundle 'klen/python-mode.git'
@@ -49,7 +50,10 @@ Bundle 'danro/rename.vim'
 Bundle 'Yggdroot/indentLine'
 Bundle 'vim-scripts/HTML-AutoCloseTag'
 
-Bundle 'fisadev/vim-isort'
+Bundle 'heavenshell/vim-pydocstring'
+Bundle 'heavenshell/vim-jsdoc'
+
+Bundle 'vim-scripts/yaml.vim'
 
 " Bundle 'aperezdc/vim-template.git'
 " Bundle 'drmingdrmer/xptemplate.git'
@@ -247,7 +251,7 @@ set wildignore+=*/bower_components/*,*/node_modules/*
 " --- My F functions
 noremap <silent> <F3> :call ToggleNumbers()<CR>
 noremap <silent> <F4> :NERDTreeToggle<CR>
-noremap <silent> <F5> :ConqueTerm bash<CR>
+noremap <silent> <F5> :TagmaTaskToggle<CR>
 noremap <silent> <F6> :Gblame<CR>
 noremap <silent> <F8> :SignatureToggle<CR>
 nnoremap <F10> :set invpaste paste?<CR>
