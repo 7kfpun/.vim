@@ -14,12 +14,57 @@ if finddir(g:SESSION_DIR) == ''
     silent call mkdir(g:SESSION_DIR, "p")
 endif
 
-" Load pathogen with docs for all plugins
-filetype off
-call pathogen#infect()
-call pathogen#helptags()
-syntax on
-filetype plugin indent on
+" Load Vundle for all plugins
+filetype off                  " required
+set rtp+=$HOME/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'scrooloose/nerdtree.git'
+Bundle 'majutsushi/tagbar.git'
+Bundle 'scrooloose/nerdcommenter.git'
+Bundle 'tpope/vim-surround.git'
+Bundle 'tpope/vim-fugitive.git'
+" Bundle 'vim-scripts/TaskList.vim.git'
+Bundle 'JessicaKMcIntosh/TagmaTasks'
+Bundle 'mileszs/ack.vim.git'
+Bundle 'kien/ctrlp.vim.git'
+Bundle 'klen/python-mode.git'
+Bundle 'sjl/gundo.vim.git'
+Bundle 'vim-scripts/taglist.vim.git'
+Bundle 'ervandew/supertab'
+Bundle 'kana/vim-fakeclip.git'
+Bundle 'bling/vim-airline.git'
+Bundle 'chrisbra/SudoEdit.vim.git'
+Bundle 'davidhalter/jedi-vim.git'
+" Bundle 'kshenoy/vim-signature.git'
+" Bundle 'mattn/emmet-vim.git'
+Bundle 'pangloss/vim-javascript.git'
+Bundle 'tyru/open-browser.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'othree/html5.vim'
+Bundle 'sukima/xmledit.git'
+Bundle 'tpope/vim-abolish'
+Bundle 'danro/rename.vim'
+Bundle 'Yggdroot/indentLine'
+Bundle 'vim-scripts/HTML-AutoCloseTag'
+
+Bundle 'heavenshell/vim-pydocstring'
+Bundle 'heavenshell/vim-jsdoc'
+
+Bundle 'vim-scripts/yaml.vim'
+
+Bundle 'terryma/vim-multiple-cursors'
+
+" Bundle 'aperezdc/vim-template.git'
+" Bundle 'drmingdrmer/xptemplate.git'
+
+" Bundle 'derekwyatt/vim-scala.git'
+
+" All of your Plugins must be added before the following line
+" call vundle#end()            " required
+filetype plugin indent on    " required
 
 " Buffer options
 set hidden                  " hide buffers when they are abandoned
@@ -106,8 +151,8 @@ if &term =~ "xterm"
 endif
 
 colo wombat256mod  " default
-autocmd! BufEnter,BufNewFile *.html,*.vim,*xml,*.js colo mustang
-autocmd! BufLeave *.html,*.vim,*xml,*.js colo wombat256mod
+" autocmd! BufEnter,BufNewFile *.html,*.vim,*xml,*.js colo mustang
+" autocmd! BufLeave *.html,*.vim,*xml,*.js colo wombat256mod
 
 let mapleader = ","
 
@@ -165,9 +210,6 @@ nmap <leader>a <Esc>:Ack!
 cmap W w
 cmap Q q"
 
-" Split screen when vim starts up
-au VimEnter * vsplit
-
 " If the current buffer has never been saved, it will have no name,
 " call the file browser to save it, otherwise just save it.
 command -nargs=0 -bar Update if &modified 
@@ -206,11 +248,12 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
+set wildignore+=*/bower_components/*,*/node_modules/*
+
 " --- My F functions
-noremap <silent> <F3> :call ToggleNumbers()<CR>
+noremap <silent> <F2> :Gblame<CR>
+noremap <silent> <F3> :TagmaTaskToggle<CR>
 noremap <silent> <F4> :NERDTreeToggle<CR>
-noremap <silent> <F5> :ConqueTerm bash<CR>
-noremap <silent> <F6> :Gblame<CR>
 noremap <silent> <F8> :SignatureToggle<CR>
 nnoremap <F10> :set invpaste paste?<CR>
 set pastetoggle=<F10>
@@ -219,26 +262,28 @@ set showmode
 " --- Python-mode                                
 let g:pymode_lint_ignore = "C901,C0110"
 
-" Ctrl-j/k deletes blank line below/above, and Alt-j/k inserts.
-nnoremap <silent><C-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
-nnoremap <silent><C-k> m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
-nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
-nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+" Split screen when vim starts up
+" au VimEnter * vsplit
 
-" 
-" --- Personal function
-"function! ToggleNumbers()
-    "if !exists('s:cur')
-        "let s:cur = -1
-    "else
-        "let s:cur = (s:cur + 1) % 3
-    "endif
+" Start NERDTree when vim starts up
+autocmd VimEnter * NERDTree
 
-    "if s:cur == 0
-        "set nornu nonu
-    "elseif &rnu == 1
-        "set nu
-    "else
-        "set rnu
-    "endif
-"endfunction
+" Set indent line
+let g:indentLine_char = '┊'
+let g:indentLine_color_term = 239
+
+" --- NERDTree
+" files/dirs to ignore in NERDTree
+let NERDTreeIgnore=['\~$', '\.AppleDouble$', '\.beam$', 'build$',
+\'dist$', '\.DS_Store$', '\.egg$', '\.egg-info$', '\.la$',
+\'\.lo$', '\.\~lock.*#$', '\.mo$', '\.o$', '\.pt.cache$',
+\'\.pyc$', '\.pyo$', '__pycache__$', '\.Python$', '\..*.rej$',
+\'\.rej$', '\.ropeproject$', '\.svn$', '\.tags$' ]
+
+" --- NERDCommenter
+let NERDSpaceDelims = 1
+let g:NERDCustomDelimiters = { 'ansible': { 'left': '#'} }
+
+" --- Isort
+let g:vim_isort_map = '<C-i>'
+
