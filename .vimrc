@@ -55,6 +55,8 @@ Bundle 'heavenshell/vim-jsdoc'
 
 Bundle 'vim-scripts/yaml.vim'
 
+Bundle 'terryma/vim-multiple-cursors'
+
 " Bundle 'aperezdc/vim-template.git'
 " Bundle 'drmingdrmer/xptemplate.git'
 
@@ -249,10 +251,9 @@ let g:ctrlp_custom_ignore = {
 set wildignore+=*/bower_components/*,*/node_modules/*
 
 " --- My F functions
-noremap <silent> <F3> :call ToggleNumbers()<CR>
+noremap <silent> <F2> :Gblame<CR>
+noremap <silent> <F3> :TagmaTaskToggle<CR>
 noremap <silent> <F4> :NERDTreeToggle<CR>
-noremap <silent> <F5> :TagmaTaskToggle<CR>
-noremap <silent> <F6> :Gblame<CR>
 noremap <silent> <F8> :SignatureToggle<CR>
 nnoremap <F10> :set invpaste paste?<CR>
 set pastetoggle=<F10>
