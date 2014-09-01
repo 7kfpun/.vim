@@ -260,6 +260,7 @@ set pastetoggle=<F10>
 set showmode
 
 " --- Python-mode                                
+let g:pymode_breakpoint_cmd = "import ipdb; ipdb.set_trace()  ### XXX BREAKPOINT"
 let g:pymode_lint_ignore = "C901,C0110"
 
 " Split screen when vim starts up
