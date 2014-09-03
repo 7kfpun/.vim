@@ -26,7 +26,8 @@ Bundle 'majutsushi/tagbar.git'
 Bundle 'scrooloose/nerdcommenter.git'
 Bundle 'tpope/vim-surround.git'
 Bundle 'tpope/vim-fugitive.git'
-Bundle 'vim-scripts/TaskList.vim.git'
+" Bundle 'vim-scripts/TaskList.vim.git'
+Bundle 'JessicaKMcIntosh/TagmaTasks'
 Bundle 'mileszs/ack.vim.git'
 Bundle 'kien/ctrlp.vim.git'
 Bundle 'klen/python-mode.git'
@@ -41,7 +42,7 @@ Bundle 'davidhalter/jedi-vim.git'
 " Bundle 'mattn/emmet-vim.git'
 Bundle 'pangloss/vim-javascript.git'
 Bundle 'tyru/open-browser.vim'
-Bundle 'scrooloose/syntastic'
+" Bundle 'scrooloose/syntastic'
 Bundle 'othree/html5.vim'
 Bundle 'sukima/xmledit.git'
 Bundle 'tpope/vim-abolish'
@@ -49,6 +50,13 @@ Bundle 'danro/rename.vim'
 Bundle 'Yggdroot/indentLine'
 Bundle 'vim-scripts/HTML-AutoCloseTag'
 Bundle 'Valloric/MatchTagAlways'
+
+Bundle 'heavenshell/vim-pydocstring'
+Bundle 'heavenshell/vim-jsdoc'
+
+Bundle 'vim-scripts/yaml.vim'
+
+Bundle 'terryma/vim-multiple-cursors'
 
 " Bundle 'aperezdc/vim-template.git'
 " Bundle 'drmingdrmer/xptemplate.git'
@@ -244,17 +252,25 @@ let g:ctrlp_custom_ignore = {
 set wildignore+=*/bower_components/*,*/node_modules/*
 
 " --- My F functions
-noremap <silent> <F3> :call ToggleNumbers()<CR>
+noremap <silent> <F2> :Gblame<CR>
+noremap <silent> <F3> :TagmaTaskToggle<CR>
 noremap <silent> <F4> :NERDTreeToggle<CR>
-noremap <silent> <F5> :ConqueTerm bash<CR>
-noremap <silent> <F6> :Gblame<CR>
 noremap <silent> <F8> :SignatureToggle<CR>
 nnoremap <F10> :set invpaste paste?<CR>
 set pastetoggle=<F10>
 set showmode
 
 " --- Python-mode                                
-let g:pymode_lint_ignore = "C901,C0110"
+let g:pymode_breakpoint_cmd = "import ipdb; ipdb.set_trace()  ### XXX BREAKPOINT"
+let g:pymode_lint_checkers = ['pylint', 'pep8', 'pep257', 'pyflakes', 'mccabe']
+let g:pymode_lint_ignore = "C901,C0110,C0111"
+let g:pymode_lint_sort = ['E', 'C', 'W', 'R', 'I', 'F', 'D']
+let g:pymode_lint_unmodified = 1
+" let g:pymode_options_max_line_length = 99
+let g:pymode_rope_lookup_project = 0
+let g:pymode_syntax_highlight_equal_operator = 0
+let g:pymode_debug = 1
+" let g:pymode_python = 'python3'
 
 " Split screen when vim starts up
 " au VimEnter * vsplit
