@@ -40,7 +40,6 @@ Bundle 'chrisbra/SudoEdit.vim.git'
 Bundle 'davidhalter/jedi-vim.git'
 " Bundle 'kshenoy/vim-signature.git'
 " Bundle 'mattn/emmet-vim.git'
-Bundle 'pangloss/vim-javascript.git'
 Bundle 'tyru/open-browser.vim'
 " Bundle 'scrooloose/syntastic'
 Bundle 'othree/html5.vim'
@@ -50,7 +49,8 @@ Bundle 'danro/rename.vim'
 Bundle 'Yggdroot/indentLine'
 Bundle 'vim-scripts/HTML-AutoCloseTag'
 Bundle 'Valloric/MatchTagAlways'
-
+Bundle 'pangloss/vim-javascript.git'
+Bundle 'maksimr/vim-jsbeautify'
 Bundle 'heavenshell/vim-pydocstring'
 Bundle 'heavenshell/vim-jsdoc'
 
@@ -293,3 +293,8 @@ let NERDTreeIgnore=['\~$', '\.AppleDouble$', '\.beam$', 'build$',
 " --- NERDCommenter
 let NERDSpaceDelims = 1
 let g:NERDCustomDelimiters = { 'ansible': { 'left': '#'} }
+
+" --- jsbeautify
+autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
