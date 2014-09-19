@@ -54,7 +54,7 @@ Bundle 'maksimr/vim-jsbeautify'
 Bundle 'heavenshell/vim-pydocstring'
 Bundle 'heavenshell/vim-jsdoc'
 
-Bundle 'vim-scripts/yaml.vim'
+Bundle 'ingydotnet/yaml-vim'
 
 Bundle 'terryma/vim-multiple-cursors'
 
@@ -96,6 +96,9 @@ set smarttab                " indent using shiftwidth"
 set shiftwidth=4            " number of spaces to use for each step of indent
 set softtabstop=4           " tab like 4 spaces
 set shiftround              " drop unused spaces
+
+autocmd Filetype html setlocal ts=2 sts=2 sw=2
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 
 " Backup and swap files
 set history=1000            " history length
