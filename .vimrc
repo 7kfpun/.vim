@@ -54,7 +54,7 @@ Bundle 'maksimr/vim-jsbeautify'
 Bundle 'heavenshell/vim-pydocstring'
 Bundle 'heavenshell/vim-jsdoc'
 
-Bundle 'vim-scripts/yaml.vim'
+Bundle 'ingydotnet/yaml-vim'
 
 Bundle 'terryma/vim-multiple-cursors'
 
