@@ -17,7 +17,7 @@ indent_size = 2
 indent_style = space
 indent_size = 2
 
-[**.html]
+[**.html, **.html.erb]
 ;vim:max_char=78:brace_style=expand
 indent_style = space
 indent_size = 2
