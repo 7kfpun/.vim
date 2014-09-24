@@ -58,6 +58,8 @@ Bundle 'vim-scripts/yaml.vim'
 
 Bundle 'terryma/vim-multiple-cursors'
 
+Bundle 'godlygeek/tabular'
+
 " Bundle 'aperezdc/vim-template.git'
 " Bundle 'drmingdrmer/xptemplate.git'
 
@@ -96,6 +98,12 @@ set smarttab                " indent using shiftwidth"
 set shiftwidth=4            " number of spaces to use for each step of indent
 set softtabstop=4           " tab like 4 spaces
 set shiftround              " drop unused spaces
+
+autocmd BufRead,BufNewFile *.erb set filetype=eruby
+
+autocmd Filetype html setlocal ts=2 sts=2 sw=2
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 
 " Backup and swap files
 set history=1000            " history length
@@ -297,4 +305,5 @@ let g:NERDCustomDelimiters = { 'ansible': { 'left': '#'} }
 " --- jsbeautify
 autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
 autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+autocmd FileType eruby vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
 autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
