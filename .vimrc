@@ -40,7 +40,6 @@ Bundle 'chrisbra/SudoEdit.vim.git'
 Bundle 'davidhalter/jedi-vim.git'
 " Bundle 'kshenoy/vim-signature.git'
 " Bundle 'mattn/emmet-vim.git'
-Bundle 'pangloss/vim-javascript.git'
 Bundle 'tyru/open-browser.vim'
 " Bundle 'scrooloose/syntastic'
 Bundle 'othree/html5.vim'
@@ -50,13 +49,17 @@ Bundle 'danro/rename.vim'
 Bundle 'Yggdroot/indentLine'
 Bundle 'vim-scripts/HTML-AutoCloseTag'
 Bundle 'Valloric/MatchTagAlways'
-
+Bundle 'pangloss/vim-javascript.git'
+Bundle 'maksimr/vim-jsbeautify'
 Bundle 'heavenshell/vim-pydocstring'
 Bundle 'heavenshell/vim-jsdoc'
 
-Bundle 'vim-scripts/yaml.vim'
+Bundle 'ingydotnet/yaml-vim'
 
 Bundle 'terryma/vim-multiple-cursors'
+
+Bundle 'godlygeek/tabular'
+Bundle 'moll/vim-node'
 
 " Bundle 'aperezdc/vim-template.git'
 " Bundle 'drmingdrmer/xptemplate.git'
@@ -96,6 +99,12 @@ set smarttab                " indent using shiftwidth"
 set shiftwidth=4            " number of spaces to use for each step of indent
 set softtabstop=4           " tab like 4 spaces
 set shiftround              " drop unused spaces
+
+autocmd BufRead,BufNewFile *.erb set filetype=eruby
+
+autocmd Filetype html setlocal ts=2 sts=2 sw=2
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 
 " Backup and swap files
 set history=1000            " history length
@@ -261,8 +270,8 @@ set pastetoggle=<F10>
 set showmode
 
 " --- Python-mode                                
-let g:pymode_breakpoint_cmd = "import ipdb; ipdb.set_trace()  ### XXX BREAKPOINT"
-let g:pymode_lint_checkers = ['pylint', 'pep8', 'pep257', 'pyflakes', 'mccabe']
+let g:pymode_breakpoint_cmd = "import ipdb; ipdb.set_trace()  # XXX BREAKPOINT"
+" let g:pymode_lint_checkers = ['pylint', 'pep8', 'pep257', 'pyflakes', 'mccabe']
 let g:pymode_lint_ignore = "C901,C0110,C0111"
 let g:pymode_lint_sort = ['E', 'C', 'W', 'R', 'I', 'F', 'D']
 let g:pymode_lint_unmodified = 1
@@ -293,3 +302,9 @@ let NERDTreeIgnore=['\~$', '\.AppleDouble$', '\.beam$', 'build$',
 " --- NERDCommenter
 let NERDSpaceDelims = 1
 let g:NERDCustomDelimiters = { 'ansible': { 'left': '#'} }
+
+" --- jsbeautify
+autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+autocmd FileType eruby vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
