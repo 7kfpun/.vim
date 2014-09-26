@@ -59,6 +59,7 @@ Bundle 'ingydotnet/yaml-vim'
 Bundle 'terryma/vim-multiple-cursors'
 
 Bundle 'godlygeek/tabular'
+Bundle 'moll/vim-node'
 
 " Bundle 'aperezdc/vim-template.git'
 " Bundle 'drmingdrmer/xptemplate.git'
@@ -269,7 +270,7 @@ set pastetoggle=<F10>
 set showmode
 
 " --- Python-mode                                
-let g:pymode_breakpoint_cmd = "import ipdb; ipdb.set_trace()  ### XXX BREAKPOINT"
+let g:pymode_breakpoint_cmd = "import ipdb; ipdb.set_trace()  # XXX BREAKPOINT"
 " let g:pymode_lint_checkers = ['pylint', 'pep8', 'pep257', 'pyflakes', 'mccabe']
 let g:pymode_lint_ignore = "C901,C0110,C0111"
 let g:pymode_lint_sort = ['E', 'C', 'W', 'R', 'I', 'F', 'D']
