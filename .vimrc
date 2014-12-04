@@ -60,6 +60,13 @@ Bundle 'terryma/vim-multiple-cursors'
 
 Bundle 'godlygeek/tabular'
 Bundle 'moll/vim-node'
+Bundle 'hallettj/jslint.vim'
+
+let g:JSLintHighlightErrorLine = 0
+
+" Bundle 'Rykka/InstantRst'
+" Bundle 'Rykka/clickable.vim'
+" Bundle 'Rykka/riv.vim'
 
 " Bundle 'aperezdc/vim-template.git'
 " Bundle 'drmingdrmer/xptemplate.git'
