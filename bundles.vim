@@ -26,8 +26,11 @@
     NeoBundle 'LargeFile'
 
     " pseudo clipboard register for non-GUI version of Vim 
-    NeoBundle "unphased/vim-fakeclip"
+    NeoBundle 'unphased/vim-fakeclip'
 
+    " Powerful shell implemented by vim.
+    NeoBundle 'Shougo/vimshell.vim'
+        nnoremap <silent> <F5> :VimShell<CR>
 " }}}
 
 
@@ -110,12 +113,12 @@
 
     " A tree explorer plugin for vim.
     NeoBundleLazy 'scrooloose/nerdtree', {'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}} 
-        let NERDTreeWinSize = 30
-        let NERDTreeIgnore=['\~$', '\.AppleDouble$', '\.beam$', 'build$',
+        let g:NERDTreeWinSize=20
+        let g:NERDTreeIgnore = ['\~$', '\.AppleDouble$', '\.beam$', 'build$',
                     \'dist$', '\.DS_Store$', '\.egg$', '\.egg-info$', '\.la$',
                     \'\.lo$', '\.\~lock.*#$', '\.mo$', '\.o$', '\.pt.cache$',
                     \'\.pyc$', '\.pyo$', '__pycache__$', '\.Python$', '\..*.rej$',
-                    \'\.rej$', '\.ropeproject$', '\.svn$', '\.tags$' ]
+                    \'\.rej$', '\.ropeproject$', '\.svn$', '\.tags$']
         nnoremap <silent> <F6> :NERDTreeToggle<CR>
         nnoremap <silent> <leader>t :NERDTreeToggle<CR>
         nnoremap <silent> <leader>f :NERDTreeFind<CR>
