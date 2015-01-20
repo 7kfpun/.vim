@@ -219,8 +219,8 @@ call neobundle#end()
 
 " functions {{{
 " =============
-set winwidth=40
-set winminwidth=40
+" set winwidth=40
+" set winminwidth=40
 function! SplitToggle()
     if(&winwidth == &winminwidth)
         set winwidth=999

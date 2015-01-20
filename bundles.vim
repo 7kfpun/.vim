@@ -113,7 +113,7 @@
 
     " A tree explorer plugin for vim.
     NeoBundleLazy 'scrooloose/nerdtree', {'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}} 
-        let g:NERDTreeWinSize=20
+        let g:NERDTreeWinSize=30
         let g:NERDTreeIgnore = ['\~$', '\.AppleDouble$', '\.beam$', 'build$',
                     \'dist$', '\.DS_Store$', '\.egg$', '\.egg-info$', '\.la$',
                     \'\.lo$', '\.\~lock.*#$', '\.mo$', '\.o$', '\.pt.cache$',
@@ -130,7 +130,7 @@
         let g:nerdtree_tabs_open_on_console_startup = 1
         noremap <silent> <F7> :NERDTreeTabsToggle<CR>
 
-    NeoBundleLazy 'majutsushi/tagbar.git', {'autoload': {'commands': 'TagbarToggle'}}  " {{{ 
+    NeoBundleLazy 'majutsushi/tagbar.git', {'autoload': {'commands': ['TagbarToggle']}}
         let g:tagbar_width = 30
         let g:tagbar_foldlevel = 1
         let g:tagbar_autofocus = 1  " set focus to TagBar when opening it
@@ -171,6 +171,12 @@
 " Languages {{{                                                             
 " =============
 
+    NeoBundle 'scrooloose/syntastic' 
+        let g:syntastic_error_symbol = '✗'
+        let g:syntastic_style_error_symbol = '✠'
+        let g:syntastic_warning_symbol = '∆'
+        let g:syntastic_style_warning_symbol = '≈'
+
     NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html', 'xhtml', 'css']}}
     NeoBundleLazy 'vim-scripts/HTML-AutoCloseTag', {'autoload': {'filetypes': ['html', 'xhtml']}}
     NeoBundleLazy 'mattn/emmet-vim', {'autoload': {'filetypes': ['html', 'xhtml', 'css', 'xml', 'xls', 'markdown']}}
@@ -179,16 +185,19 @@
     NeoBundleLazy 'heavenshell/vim-pydocstring', {'autoload': {'filetypes': 'python'}}
     NeoBundleLazy 'klen/python-mode.git', {'autoload': {'filetypes': 'python'}}
         let g:pymode_breakpoint_cmd = "import ipdb; ipdb.set_trace()  # XXX BREAKPOINT"
-        let g:pymode_lint_checkers = ['pylint', 'pep8', 'pep257', 'pyflakes', 'mccabe']
+        " let g:pymode_lint_checkers = ['pylint', 'pep8', 'pep257', 'pyflakes', 'mccabe']
         let g:pymode_lint_ignore = 'C901,C0110,C0111'
         let g:pymode_lint_sort = ['E', 'C', 'W', 'R', 'I', 'F', 'D']
         let g:pymode_lint_unmodified = 1
         let g:pymode_options_max_line_length = 80
         let g:pymode_rope_lookup_project = 0
         let g:pymode_syntax_highlight_equal_operator = 0
-        let g:pymode_debug = 1
-        let g:pymode_rope_look_project = 0
+        let g:pymode_rope_lookup_project = 0
+        let g:pymode_rope=0
         " let g:pymode_python = 'python3'
+    NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}}
+        let g:jedi#popup_on_dot=0
+    NeoBundle 'ervandew/supertab'
 
     NeoBundleLazy 'mitsuhiko/vim-jinja', {'autoload': {'filetypes': ['jinja']}}
         au BufNewFile,BufRead *.j2 set ft=jinja
@@ -208,6 +217,8 @@
         au BufNewFile,BufRead *.js setf javascript
         au BufNewFile,BufRead *.jsm setf javascript
         au BufNewFile,BufRead Jakefile setf javascript
+
+    NeoBundleLazy 'leshill/vim-json', {'autoload': {'filetypes': ['javascript','json']}}
 
 " }}}
 
