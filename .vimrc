@@ -62,6 +62,10 @@ Bundle 'godlygeek/tabular'
 Bundle 'moll/vim-node'
 Bundle 'hallettj/jslint.vim'
 
+Bundle 'airblade/vim-gitgutter'
+Bundle 'tpope/vim-endwise'
+
+
 let g:JSLintHighlightErrorLine = 0
 
 " Bundle 'Rykka/InstantRst'
@@ -241,7 +245,7 @@ nmap <leader>/ :nohl<CR>
 
 " --- TagBar
 " toggle TagBar with F8
-nnoremap <silent> <F7> :TagbarToggle<CR>
+nnoremap <silent> <F8> :TagbarToggle<CR>
 " set focus to TagBar when opening it
 let g:tagbar_autofocus = 1
 
@@ -267,7 +271,8 @@ noremap <silent> <F2> :Gblame<CR>
 noremap <silent> <F3> :TagmaTaskToggle<CR>
 noremap <silent> <F6> :NERDTreeToggle<CR>
 noremap <silent> <F7> :NERDTreeTabsToggle<CR>
-noremap <silent> <F9> :SignatureToggle<CR>
+noremap <silent> <F9> ::GitGutterToggle<CR>
+" noremap <silent> <F9> :SignatureToggle<CR>
 nnoremap <F10> :set invpaste paste?<CR>
 set pastetoggle=<F10>
 set showmode
@@ -312,3 +317,9 @@ autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
 autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
 autocmd FileType eruby vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
 autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+
+" --- airline
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
