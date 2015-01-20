@@ -1,0 +1,231 @@
+" Utils {{{
+" =================
+
+    " Interactive command execution in Vim.
+    NeoBundle 'Shougo/vimproc.vim', {
+                \ 'build' : {
+                \     'windows' : 'tools\\update-dll-mingw',
+                \     'cygwin' : 'make -f make_cygwin.mak',
+                \     'mac' : 'make -f make_mac.mak',
+                \     'linux' : 'make',
+                \     'unix' : 'gmake',
+                \    },
+                \ }
+
+    NeoBundle 'Yggdroot/indentLine'
+        let g:indentLine_char = '┊'
+        let g:indentLine_color_term = 239
+
+    NeoBundle 'mileszs/ack.vim'
+    if executable('ag')
+        let g:ackprg = "ag --nogroup --column --smart-case --follow"
+    endif
+    nmap <leader>a <Esc>:Ack!
+
+    " Edit large files quickly
+    NeoBundle 'LargeFile'
+
+    " pseudo clipboard register for non-GUI version of Vim 
+    NeoBundle 'unphased/vim-fakeclip'
+
+    " Powerful shell implemented by vim.
+    NeoBundle 'Shougo/vimshell.vim'
+        nnoremap <silent> <F5> :VimShell<CR>
+" }}}
+
+
+" Git {{{
+" =================
+
+    " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
+    NeoBundleLazy 'airblade/vim-gitgutter', {'autoload': {'commands': 'GitGutterToggle'}}
+        nnoremap <silent> <F9> :GitGutterToggle<CR>
+        nnoremap <leader>gg :GitGutterToggle<CR>
+
+    " a Git wrapper
+    NeoBundle 'tpope/vim-fugitive' 
+        nnoremap <silent> <leader>gs :Gstatus<CR>
+        nnoremap <silent> <leader>gd :Gdiff<CR>
+        nnoremap <silent> <leader>gc :Gcommit<CR>
+        nnoremap <silent> <leader>gb :Gblame<CR>
+        nnoremap <silent> <leader>gl :Glog<CR>
+        nnoremap <silent> <leader>gp :Git push<CR>
+        nnoremap <silent> <leader>gw :Gwrite<CR>
+        nnoremap <silent> <leader>gr :Gremove<CR>
+        autocmd BufReadPost fugitive://* set bufhidden=delete
+
+    " gitk for Vim
+    NeoBundleLazy 'gregsexton/gitv', {'depends': ['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}} 
+        nnoremap <silent> <leader>gv :Gitv<CR>
+        nnoremap <silent> <leader>gV :Gitv!<CR>
+
+    " Browse GitHub events in Vim
+    " NeoBundleLazy 'junegunn/vim-github-dashboard', {'autoload': {'commands': ['GHDashboard', 'GHActivity']}}
+
+" }}}
+
+
+""" Edit {{{
+
+    " Vim plugin for intensely orgasmic commenting
+    NeoBundle 'scrooloose/nerdcommenter' 
+        let NERDSpaceDelims = 1
+        let g:NERDCustomDelimiters = { 'ansible': { 'left': '#'} }
+
+    " Vim script for text filtering and alignment
+    NeoBundle 'godlygeek/tabular'
+
+    " True Sublime Text style multiple selections for Vim
+    NeoBundle 'terryma/vim-multiple-cursors'
+
+    " visually select increasingly larger regions of text using the same 
+    " key combination.
+    NeoBundle 'terryma/vim-expand-region'
+
+    " The plugin provides mappings to easily delete, change and add such
+    " surroundings in pairs.
+    NeoBundle 'tpope/vim-surround'
+
+    " enable repeating supported plugin maps with "."
+    NeoBundle 'tpope/vim-repeat'
+
+    " insert or delete brackets, parens, quotes in pair
+    NeoBundle 'jiangmiao/auto-pairs'
+" }}}
+
+
+" Status line {{{
+" ===============
+
+    " lean & mean statusline for vim that's light as air
+    NeoBundle 'bling/vim-airline' 
+        let g:airline#extensions#tabline#enabled = 1
+        let g:airline_detect_iminsert = 1
+        let g:airline_left_sep = ''
+        let g:airline_right_sep = ''
+        let g:airline_theme = 'wombat'
+
+" }}}
+
+
+" Tools {{{
+" ==========
+
+    " A tree explorer plugin for vim.
+    NeoBundleLazy 'scrooloose/nerdtree', {'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}} 
+        let g:NERDTreeWinSize=30
+        let g:NERDTreeIgnore = ['\~$', '\.AppleDouble$', '\.beam$', 'build$',
+                    \'dist$', '\.DS_Store$', '\.egg$', '\.egg-info$', '\.la$',
+                    \'\.lo$', '\.\~lock.*#$', '\.mo$', '\.o$', '\.pt.cache$',
+                    \'\.pyc$', '\.pyo$', '__pycache__$', '\.Python$', '\..*.rej$',
+                    \'\.rej$', '\.ropeproject$', '\.svn$', '\.tags$']
+        nnoremap <silent> <F6> :NERDTreeToggle<CR>
+        nnoremap <silent> <leader>t :NERDTreeToggle<CR>
+        nnoremap <silent> <leader>f :NERDTreeFind<CR>
+
+        " Start NERDTree when vim starts up
+        autocmd VimEnter * NERDTreeToggle
+
+    NeoBundleLazy 'jistr/vim-nerdtree-tabs', {'autoload': {'commands': 'NERDTreeTabsToggle'}}  
+        let g:nerdtree_tabs_open_on_console_startup = 1
+        noremap <silent> <F7> :NERDTreeTabsToggle<CR>
+
+    NeoBundleLazy 'majutsushi/tagbar.git', {'autoload': {'commands': ['TagbarToggle']}}
+        let g:tagbar_width = 30
+        let g:tagbar_foldlevel = 1
+        let g:tagbar_autofocus = 1  " set focus to TagBar when opening it
+        let g:tagbar_type_rst = {
+                    \ 'ctagstype': 'rst',
+                    \ 'kinds': [ 'r:references', 'h:headers' ],
+                    \ 'sort': 0,
+                    \ 'sro': '..',
+                    \ 'kind2scope': { 'h': 'header' },
+                    \ 'scope2kind': { 'header': 'h' }
+                    \ }
+        nnoremap <silent> <F8> :TagbarToggle<CR>
+
+    " Find files
+    NeoBundle 'kien/ctrlp.vim' 
+        let g:ctrlp_show_hidden = 1
+        let g:ctrlp_dont_split = 'NERD_tree_2'
+        " let g:ctrlp_map = '<leader>p'
+        let g:ctrlp_map = '<c-p>'
+        let g:ctrlp_custom_ignore = {
+                    \ 'dir':  '\v[\/]\.(git|hg|svn|env)$',
+                    \ 'file': '\v\.(exe|so|dll)$',
+                    \ 'link': 'some_bad_symbolic_links',
+                    \ }
+
+    " Generate the Task List.
+    NeoBundleLazy 'JessicaKMcIntosh/TagmaTasks', {'autoload': {'commands': 'TagmaTaskToggle'}}  
+        nnoremap <silent> <leader>td :TagmaTaskToggle<CR>
+
+    " Display your undo history in a graph. 
+    NeoBundleLazy 'mbbill/undotree', {'autoload': {'commands': 'UndotreeToggle'}}
+        let g:undotree_WindowLayout = 3
+        nnoremap <leader>ud :UndotreeToggle<CR>
+
+" }}}
+
+
+" Languages {{{                                                             
+" =============
+
+    NeoBundle 'scrooloose/syntastic' 
+        let g:syntastic_error_symbol = '✗'
+        let g:syntastic_style_error_symbol = '✠'
+        let g:syntastic_warning_symbol = '∆'
+        let g:syntastic_style_warning_symbol = '≈'
+
+    NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html', 'xhtml', 'css']}}
+    NeoBundleLazy 'vim-scripts/HTML-AutoCloseTag', {'autoload': {'filetypes': ['html', 'xhtml']}}
+    NeoBundleLazy 'mattn/emmet-vim', {'autoload': {'filetypes': ['html', 'xhtml', 'css', 'xml', 'xls', 'markdown']}}
+        au BufNewFile,BufRead *.md setf markdown
+
+    NeoBundleLazy 'heavenshell/vim-pydocstring', {'autoload': {'filetypes': 'python'}}
+    NeoBundleLazy 'klen/python-mode.git', {'autoload': {'filetypes': 'python'}}
+        let g:pymode_breakpoint_cmd = "import ipdb; ipdb.set_trace()  # XXX BREAKPOINT"
+        " let g:pymode_lint_checkers = ['pylint', 'pep8', 'pep257', 'pyflakes', 'mccabe']
+        let g:pymode_lint_ignore = 'C901,C0110,C0111'
+        let g:pymode_lint_sort = ['E', 'C', 'W', 'R', 'I', 'F', 'D']
+        let g:pymode_lint_unmodified = 1
+        let g:pymode_options_max_line_length = 80
+        let g:pymode_rope_lookup_project = 0
+        let g:pymode_syntax_highlight_equal_operator = 0
+        let g:pymode_rope_lookup_project = 0
+        let g:pymode_rope=0
+        " let g:pymode_python = 'python3'
+    NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}}
+        let g:jedi#popup_on_dot=0
+    NeoBundle 'ervandew/supertab'
+
+    NeoBundleLazy 'mitsuhiko/vim-jinja', {'autoload': {'filetypes': ['jinja']}}
+        au BufNewFile,BufRead *.j2 set ft=jinja
+        let g:htmljinja_disable_html_upgrade = 1
+
+    NeoBundleLazy 'chase/vim-ansible-yaml', {'autoload': {'filetypes': ['yaml', 'ansible']}}
+
+    NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
+    NeoBundleLazy 'heavenshell/vim-jsdoc', {'autoload': {'filetypes': ['javascript']}}
+    NeoBundleLazy 'hallettj/jslint.vim', {'autoload': {'filetypes': ['javascript']}}
+        let g:JSLintHighlightErrorLine = 0
+    NeoBundleLazy 'maksimr/vim-jsbeautify', {'autoload': {'filetypes': ['javascript']}}
+        au FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+        au FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+        au FileType eruby vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+        au FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+        au BufNewFile,BufRead *.js setf javascript
+        au BufNewFile,BufRead *.jsm setf javascript
+        au BufNewFile,BufRead Jakefile setf javascript
+
+    NeoBundleLazy 'leshill/vim-json', {'autoload': {'filetypes': ['javascript','json']}}
+
+" }}}
+
+
+" Autocomplete {{{
+" ================
+
+    NeoBundleLazy 'Shougo/neocomplcache.vim', {'autoload':{'insert': 1}}
+        let g:neocomplcache_enable_at_startup=1
+        let g:neocomplcache_enable_fuzzy_completion=1
