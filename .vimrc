@@ -45,7 +45,6 @@ Bundle 'tyru/open-browser.vim'
 Bundle 'othree/html5.vim'
 Bundle 'sukima/xmledit.git'
 Bundle 'tpope/vim-abolish'
-Bundle 'danro/rename.vim'
 Bundle 'Yggdroot/indentLine'
 Bundle 'vim-scripts/HTML-AutoCloseTag'
 Bundle 'Valloric/MatchTagAlways'
@@ -53,6 +52,7 @@ Bundle 'pangloss/vim-javascript.git'
 Bundle 'maksimr/vim-jsbeautify'
 Bundle 'heavenshell/vim-pydocstring'
 Bundle 'heavenshell/vim-jsdoc'
+Bundle 'jistr/vim-nerdtree-tabs'
 
 Bundle 'ingydotnet/yaml-vim'
 
@@ -67,11 +67,6 @@ let g:JSLintHighlightErrorLine = 0
 " Bundle 'Rykka/InstantRst'
 " Bundle 'Rykka/clickable.vim'
 " Bundle 'Rykka/riv.vim'
-
-" Bundle 'aperezdc/vim-template.git'
-" Bundle 'drmingdrmer/xptemplate.git'
-
-" Bundle 'derekwyatt/vim-scala.git'
 
 " All of your Plugins must be added before the following line
 " call vundle#end()            " required
@@ -245,7 +240,7 @@ inoremap <C-S> <Esc>:Update<CR>
 nmap <leader>/ :nohl<CR>
 
 " --- TagBar
-" toggle TagBar with F7
+" toggle TagBar with F8
 nnoremap <silent> <F7> :TagbarToggle<CR>
 " set focus to TagBar when opening it
 let g:tagbar_autofocus = 1
@@ -270,8 +265,9 @@ set wildignore+=*/bower_components/*,*/node_modules/*
 " --- My F functions
 noremap <silent> <F2> :Gblame<CR>
 noremap <silent> <F3> :TagmaTaskToggle<CR>
-noremap <silent> <F4> :NERDTreeToggle<CR>
-noremap <silent> <F8> :SignatureToggle<CR>
+noremap <silent> <F6> :NERDTreeToggle<CR>
+noremap <silent> <F7> :NERDTreeTabsToggle<CR>
+noremap <silent> <F9> :SignatureToggle<CR>
 nnoremap <F10> :set invpaste paste?<CR>
 set pastetoggle=<F10>
 set showmode
@@ -305,6 +301,7 @@ let NERDTreeIgnore=['\~$', '\.AppleDouble$', '\.beam$', 'build$',
 \'\.lo$', '\.\~lock.*#$', '\.mo$', '\.o$', '\.pt.cache$',
 \'\.pyc$', '\.pyo$', '__pycache__$', '\.Python$', '\..*.rej$',
 \'\.rej$', '\.ropeproject$', '\.svn$', '\.tags$' ]
+let g:nerdtree_tabs_open_on_console_startup = 1
 
 " --- NERDCommenter
 let NERDSpaceDelims = 1
