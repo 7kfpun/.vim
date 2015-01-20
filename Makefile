@@ -9,7 +9,7 @@ submodule:
 
 install: clean
 	@ln -s $(CURDIR)/.vimrc $(HOME)/.
-	@vim +BundleInstall
+	@vim +NeoBundleInstall +qall
 
 clean:
 	rm -rf $(HOME)/.vimrc
