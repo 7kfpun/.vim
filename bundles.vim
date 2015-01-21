@@ -32,6 +32,22 @@
     NeoBundle 'Shougo/vimshell.vim'
         nnoremap <silent> <F5> :VimShell<CR>
 
+    " Make scrolling in Vim more pleasant. 
+    NeoBundle 'terryma/vim-smooth-scroll'
+        noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+        noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+        noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+        noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+
+    NeoBundleLazy 'junegunn/limelight.vim', {'autoload': {'commands': 'Limelight'}}
+        " au VimEnter * Limelight
+
+    " Screensavers
+    NeoBundle 'itchyny/screensaver.vim'
+
+    " A calendar application for Vim
+    NeoBundleLazy 'itchyny/calendar.vim', {'autoload': {'commands': 'Calendar'}}
+
 " }}}
 
 
@@ -39,8 +55,10 @@
 " =======
 
     " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
+    NeoBundle 'airblade/vim-gitgutter'
     NeoBundleLazy 'airblade/vim-gitgutter', {'autoload': {'commands': 'GitGutterToggle'}}
         let g:gitgutter_sign_column_always = 1
+        let g:gitgutter_enabled = 1
         nnoremap <silent> <F9> :GitGutterToggle<CR>
         nnoremap <leader>gg :GitGutterToggle<CR>
 
@@ -62,7 +80,11 @@
         nnoremap <silent> <leader>gV :Gitv!<CR>
 
     " Browse GitHub events in Vim
-    " NeoBundleLazy 'junegunn/vim-github-dashboard', {'autoload': {'commands': ['GHDashboard', 'GHActivity']}}
+    NeoBundleLazy 'junegunn/vim-github-dashboard', {'autoload': {'commands': ['GHDashboard', 'GHActivity']}}
+
+    " A powerful Git log viewer
+    NeoBundleLazy 'cohama/agit.vim', {'autoload': {'commands': 'Agit'}}
+        noremap <silent> <F4> :Agit<CR>
 
 " }}}
 
@@ -96,7 +118,7 @@
     NeoBundle 'jiangmiao/auto-pairs'
 
     " Turn your raw template into concated string
-    NeoBundleLazy '29decibel/vim-stringify', {'autoload': {'commands': 'Stringify'}} 
+    NeoBundleLazy '29decibel/vim-stringify', {'autoload': {'commands': 'Stringify'}}
 
 " }}}
 
@@ -111,6 +133,10 @@
         let g:airline_left_sep = ''
         let g:airline_right_sep = ''
         let g:airline_theme = 'wombat'
+        function! AirlineInit()
+            let g:airline_section_y = airline#section#create(['ffenc', '%{strftime("%H:%M")}'])
+        endfunction
+        autocmd VimEnter * call AirlineInit()
 
 " }}}
 

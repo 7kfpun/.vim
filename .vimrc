@@ -1,4 +1,4 @@
-" vim: fdm=marker ts=4 sts=4 sw=4 fdl=0
+﻿" vim: fdm=marker ts=4 sts=4 sw=4 fdl=0
 scriptencoding utf-8
 
 " detect OS {{{
