@@ -1,8 +1,9 @@
-" vim: fdm=marker ts=4 sts=4 sw=4 fdl=0
+﻿" vim: fdm=marker ts=4 sts=4 sw=4 fdl=0
 
 scriptencoding utf-8
 
 " detect OS {{{
+" =============
     let s:is_windows = has('win32') || has('win64')
     let s:is_cygwin = has('win32unix')
     let s:is_macvim = has('gui_macvim')
@@ -10,7 +11,7 @@ scriptencoding utf-8
 
 
 " Setup {{{
-" ======
+" =========
 
     if has('vim_starting')
 
@@ -52,7 +53,7 @@ scriptencoding utf-8
 
 
 " Options {{{
-" =======
+" ===========
 
     " Buffer options
     set hidden                  " hide buffers when they are abandoned
@@ -212,8 +213,12 @@ scriptencoding utf-8
 " }}}
 
 
-" Bundles.vim
+" bundles.vim
 source $HOME/.vim/bundles.vim
+
+
+" " functions.vim
+" source $HOME/.vim/functions.vim
 
 
 " Project settings {{{

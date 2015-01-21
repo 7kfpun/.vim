@@ -1,6 +1,8 @@
 " Utils {{{
 " =========
 
+    NeoBundle 'mattn/webapi-vim'
+
     " Interactive command execution in Vim.
     NeoBundle 'Shougo/vimproc.vim', {
                 \ 'build' : {
@@ -120,6 +122,9 @@
 
     " Turn your raw template into concated string
     NeoBundleLazy '29decibel/vim-stringify', {'autoload': {'commands': 'Stringify'}}
+
+    " Delete unwanted whitespace at the end of lines.
+    NeoBundleLazy 'vim-scripts/DeleteTrailingWhitespace', {'autoload': {'commands': 'DeleteTrailingWhitespace'}}
 
 " }}}
 
@@ -261,4 +266,10 @@
 
     NeoBundleLazy 'leshill/vim-json', {'autoload': {'filetypes': ['javascript','json']}}
 
+" }}}
+
+
+" My utils {{{
+    NeoBundleLazy '7kfpun/checkip.vim', {'autoload': {'commands': 'CheckIp'}} 
+    NeoBundleLazy '7kfpun/pypi.vim', {'autoload': {'commands': 'Pypi'}} 
 " }}}
