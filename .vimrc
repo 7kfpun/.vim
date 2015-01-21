@@ -1,4 +1,5 @@
 " vim: fdm=marker ts=4 sts=4 sw=4 fdl=0
+
 scriptencoding utf-8
 
 " detect OS {{{
@@ -197,6 +198,16 @@ scriptencoding utf-8
     cmap WAQ waq
 
     nnoremap <F10> :set invpaste paste?<CR>
+
+    " Tab Switching
+    noremap <leader>1 1gt
+    noremap <leader>2 2gt
+    noremap <leader>3 3gt
+    noremap <leader>4 4gt
+    " noremap <C-1> 1gt
+    " noremap <C-2> 2gt
+    " noremap <C-3> 3gt
+    " noremap <C-4> 4gt
 
 " }}}
 
