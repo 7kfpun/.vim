@@ -1,5 +1,5 @@
 " Utils {{{
-" =================
+" =========
 
     " Interactive command execution in Vim.
     NeoBundle 'Shougo/vimproc.vim', {
@@ -31,14 +31,36 @@
     " Powerful shell implemented by vim.
     NeoBundle 'Shougo/vimshell.vim'
         nnoremap <silent> <F5> :VimShell<CR>
+
+    " Make scrolling in Vim more pleasant. 
+    NeoBundle 'terryma/vim-smooth-scroll'
+        " noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+        " noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+        " noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+        " noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+        noremap <silent> <pageup> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+        noremap <silent> <pagedown> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+
+    NeoBundleLazy 'junegunn/limelight.vim', {'autoload': {'commands': 'Limelight'}}
+        " au VimEnter * Limelight
+
+    " Screensavers
+    NeoBundle 'itchyny/screensaver.vim'
+
+    " A calendar application for Vim
+    NeoBundleLazy 'itchyny/calendar.vim', {'autoload': {'commands': 'Calendar'}}
+
 " }}}
 
 
 " Git {{{
-" =================
+" =======
 
     " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
+    NeoBundle 'airblade/vim-gitgutter'
     NeoBundleLazy 'airblade/vim-gitgutter', {'autoload': {'commands': 'GitGutterToggle'}}
+        let g:gitgutter_sign_column_always = 1
+        let g:gitgutter_enabled = 1
         nnoremap <silent> <F9> :GitGutterToggle<CR>
         nnoremap <leader>gg :GitGutterToggle<CR>
 
@@ -52,7 +74,7 @@
         nnoremap <silent> <leader>gp :Git push<CR>
         nnoremap <silent> <leader>gw :Gwrite<CR>
         nnoremap <silent> <leader>gr :Gremove<CR>
-        autocmd BufReadPost fugitive://* set bufhidden=delete
+        au BufReadPost fugitive://* set bufhidden=delete
 
     " gitk for Vim
     NeoBundleLazy 'gregsexton/gitv', {'depends': ['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}} 
@@ -60,12 +82,17 @@
         nnoremap <silent> <leader>gV :Gitv!<CR>
 
     " Browse GitHub events in Vim
-    " NeoBundleLazy 'junegunn/vim-github-dashboard', {'autoload': {'commands': ['GHDashboard', 'GHActivity']}}
+    NeoBundleLazy 'junegunn/vim-github-dashboard', {'autoload': {'commands': ['GHDashboard', 'GHActivity']}}
+
+    " A powerful Git log viewer
+    NeoBundleLazy 'cohama/agit.vim', {'autoload': {'commands': 'Agit'}}
+        noremap <silent> <F4> :Agit<CR>
 
 " }}}
 
 
-""" Edit {{{
+" Edit {{{
+" ========
 
     " Vim plugin for intensely orgasmic commenting
     NeoBundle 'scrooloose/nerdcommenter' 
@@ -91,6 +118,10 @@
 
     " insert or delete brackets, parens, quotes in pair
     NeoBundle 'jiangmiao/auto-pairs'
+
+    " Turn your raw template into concated string
+    NeoBundleLazy '29decibel/vim-stringify', {'autoload': {'commands': 'Stringify'}}
+
 " }}}
 
 
@@ -99,11 +130,15 @@
 
     " lean & mean statusline for vim that's light as air
     NeoBundle 'bling/vim-airline' 
-        let g:airline#extensions#tabline#enabled = 1
+        " let g:airline#extensions#tabline#enabled = 1
         let g:airline_detect_iminsert = 1
         let g:airline_left_sep = ''
         let g:airline_right_sep = ''
         let g:airline_theme = 'wombat'
+        function! AirlineInit()
+            let g:airline_section_y = airline#section#create(['ffenc', '%{strftime("%H:%M")}'])
+        endfunction
+        autocmd VimEnter * call AirlineInit()
 
 " }}}
 
@@ -113,7 +148,7 @@
 
     " A tree explorer plugin for vim.
     NeoBundleLazy 'scrooloose/nerdtree', {'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}} 
-        let g:NERDTreeWinSize=30
+        let g:NERDTreeWinSize = 30
         let g:NERDTreeIgnore = ['\~$', '\.AppleDouble$', '\.beam$', 'build$',
                     \'dist$', '\.DS_Store$', '\.egg$', '\.egg-info$', '\.la$',
                     \'\.lo$', '\.\~lock.*#$', '\.mo$', '\.o$', '\.pt.cache$',
@@ -124,7 +159,7 @@
         nnoremap <silent> <leader>f :NERDTreeFind<CR>
 
         " Start NERDTree when vim starts up
-        autocmd VimEnter * NERDTreeToggle
+        au VimEnter * NERDTreeToggle
 
     NeoBundleLazy 'jistr/vim-nerdtree-tabs', {'autoload': {'commands': 'NERDTreeTabsToggle'}}  
         let g:nerdtree_tabs_open_on_console_startup = 1
@@ -133,7 +168,7 @@
     NeoBundleLazy 'majutsushi/tagbar.git', {'autoload': {'commands': ['TagbarToggle']}}
         let g:tagbar_width = 30
         let g:tagbar_foldlevel = 1
-        let g:tagbar_autofocus = 1  " set focus to TagBar when opening it
+        " let g:tagbar_autofocus = 1  " set focus to TagBar when opening it
         let g:tagbar_type_rst = {
                     \ 'ctagstype': 'rst',
                     \ 'kinds': [ 'r:references', 'h:headers' ],
@@ -142,7 +177,10 @@
                     \ 'kind2scope': { 'h': 'header' },
                     \ 'scope2kind': { 'header': 'h' }
                     \ }
-        nnoremap <silent> <F8> :TagbarToggle<CR>
+        " nnoremap <silent> <F8> :TagbarToggle<CR>
+
+        " Start TagbarToggle when vim starts up
+        " au VimEnter * TagbarToggle
 
     " Find files
     NeoBundle 'kien/ctrlp.vim' 
@@ -168,8 +206,12 @@
 " }}}
 
 
-" Languages {{{                                                             
+" Languages {{{
 " =============
+
+    NeoBundleLazy 'Shougo/neocomplcache.vim', {'autoload': {'insert': 1}}
+        let g:neocomplcache_enable_at_startup=1
+        let g:neocomplcache_enable_fuzzy_completion=1
 
     NeoBundle 'scrooloose/syntastic' 
         let g:syntastic_error_symbol = '✗'
@@ -221,11 +263,3 @@
     NeoBundleLazy 'leshill/vim-json', {'autoload': {'filetypes': ['javascript','json']}}
 
 " }}}
-
-
-" Autocomplete {{{
-" ================
-
-    NeoBundleLazy 'Shougo/neocomplcache.vim', {'autoload':{'insert': 1}}
-        let g:neocomplcache_enable_at_startup=1
-        let g:neocomplcache_enable_fuzzy_completion=1
