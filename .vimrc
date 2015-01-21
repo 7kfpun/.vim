@@ -198,6 +198,16 @@ scriptencoding utf-8
 
     nnoremap <F10> :set invpaste paste?<CR>
 
+    " Tab Switching
+    noremap <leader>1 1gt
+    noremap <leader>2 2gt
+    noremap <leader>3 3gt
+    noremap <leader>4 4gt
+    " noremap <C-1> 1gt
+    " noremap <C-2> 2gt
+    " noremap <C-3> 3gt
+    " noremap <C-4> 4gt
+
 " }}}
 
 
