@@ -270,6 +270,7 @@
 
 
 " My utils {{{
-    NeoBundleLazy '7kfpun/checkip.vim', {'autoload': {'commands': 'CheckIp'}} 
-    NeoBundleLazy '7kfpun/pypi.vim', {'autoload': {'commands': 'Pypi'}} 
+    NeoBundleLazy '7kfpun/checkip.vim', {'autoload': {'commands': 'CheckIp'}}
+    NeoBundle '7kfpun/pypi.vim'
+    " NeoBundleLazy '7kfpun/pypi.vim', {'autoload': {'commands': 'Pypi'}}
 " }}}
