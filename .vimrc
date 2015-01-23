@@ -198,7 +198,9 @@ scriptencoding utf-8
     cmap WA wa
     cmap WAQ waq
 
+    " Set paste
     nnoremap <F10> :set invpaste paste?<CR>
+    set pastetoggle=<F10>
 
     " Tab Switching
     noremap <leader>1 1gt
@@ -209,6 +211,8 @@ scriptencoding utf-8
     " noremap <C-2> 2gt
     " noremap <C-3> 3gt
     " noremap <C-4> 4gt
+
+    nnoremap <Leader>s :so%<CR>
 
 " }}}
 
