@@ -274,6 +274,7 @@
 
     NeoBundleLazy '7kfpun/checkip.vim', {'autoload': {'commands': 'CheckIp'}}
     NeoBundle '7kfpun/pypi.vim'
+        let g:enable_add_latest_version = 1
     " NeoBundleLazy '7kfpun/pypi.vim', {'autoload': {'commands': 'Pypi'}}
 
 " }}}
