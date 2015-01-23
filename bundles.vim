@@ -47,7 +47,8 @@
         " au VimEnter * Limelight
 
     " Screensavers
-    NeoBundle 'itchyny/screensaver.vim'
+    NeoBundleLazy 'itchyny/screensaver.vim', {'autoload': {'commands': 'ScreenSaver'}}
+        " autocmd CursorHold * ScreenSaver
 
     " A calendar application for Vim
     NeoBundleLazy 'itchyny/calendar.vim', {'autoload': {'commands': 'Calendar'}}
@@ -271,5 +272,6 @@
 
 " My utils {{{
     NeoBundleLazy '7kfpun/checkip.vim', {'autoload': {'commands': 'CheckIp'}} 
-    NeoBundleLazy '7kfpun/pypi.vim', {'autoload': {'commands': 'Pypi'}} 
+    NeoBundle '7kfpun/pypi.vim'
+    " NeoBundleLazy '7kfpun/pypi.vim', {'autoload': {'commands': 'Pypi'}} 
 " }}}
