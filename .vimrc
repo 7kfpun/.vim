@@ -214,6 +214,10 @@ scriptencoding utf-8
 
     nnoremap <Leader>s :so%<CR>
 
+    " Insert newline without entering insert mode
+    nmap <S-Enter> O<Esc>j
+    nmap <CR> o<Esc>k
+
 " }}}
 
 

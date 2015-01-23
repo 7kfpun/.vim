@@ -34,6 +34,9 @@
     NeoBundle 'Shougo/vimshell.vim'
         nnoremap <silent> <F5> :VimShell<CR>
 
+    " Intelligently reopen files where you left off.
+    NeoBundle 'dietsche/vim-lastplace'
+
     " Make scrolling in Vim more pleasant. 
     NeoBundle 'terryma/vim-smooth-scroll'
         " noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
@@ -52,6 +55,15 @@
 
     " A calendar application for Vim
     NeoBundleLazy 'itchyny/calendar.vim', {'autoload': {'commands': 'Calendar'}}
+
+    " Quick Google lookup directly from Vim.
+    NeoBundleLazy 'szw/vim-g', {'autoload': {'commands': 'Google'}}
+
+    " Maximizes and restores the current window in Vim.
+    NeoBundleLazy 'szw/vim-maximizer', {'autoload': {'commands': 'MaximizerToggle'}}
+        nnoremap <silent><F3> :MaximizerToggle<CR>
+        vnoremap <silent><F3> :MaximizerToggle<CR>gv
+        inoremap <silent><F3> <C-o>:MaximizerToggle<CR>
 
 " }}}
 
