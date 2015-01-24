@@ -65,6 +65,9 @@
         vnoremap <silent><F3> :MaximizerToggle<CR>gv
         inoremap <silent><F3> <C-o>:MaximizerToggle<CR>
 
+    NeoBundle 'jeffkreeftmeijer/vim-numbertoggle'
+        let g:loaded_numbertoggle = 0
+
 " }}}
 
 
@@ -282,11 +285,22 @@
 " }}}
 
 
+" Unite {{{
+    
+    NeoBundle 'klen/unite-radio.vim'
+    NeoBundle 'Shougo/unite.vim'
+        nnoremap <C-l>  :Unite<CR>
+
+" }}}
+
 " My utils {{{
 
     NeoBundleLazy '7kfpun/checkip.vim', {'autoload': {'commands': 'CheckIp'}}
     NeoBundle '7kfpun/pypi.vim'
         let g:enable_add_latest_version = 1
     " NeoBundleLazy '7kfpun/pypi.vim', {'autoload': {'commands': 'Pypi'}}
+     
+    NeoBundle '7kfpun/bing.vim'
+    NeoBundle '7kfpun/unite-bing.vim'
 
 " }}}
