@@ -223,6 +223,20 @@
 " }}}
 
 
+" Unite {{{
+" =========
+
+    " Unite and create user interfaces.
+    NeoBundleLazy 'Shougo/unite.vim', {'autoload': {'commands': 'Unite'}}
+        nnoremap <C-l> :Unite<CR>
+
+    NeoBundle 'junkblocker/unite-tasklist'
+    NeoBundle 'klen/unite-radio.vim'
+    NeoBundle 'moznion/unite-git-conflict.vim'
+
+" }}}
+
+
 " Languages {{{
 " =============
 
@@ -288,5 +302,6 @@
     NeoBundle '7kfpun/pypi.vim'
         let g:enable_add_latest_version = 1
     " NeoBundleLazy '7kfpun/pypi.vim', {'autoload': {'commands': 'Pypi'}}
+    NeoBundle '7kfpun/bing.vim'
 
 " }}}
