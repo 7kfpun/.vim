@@ -75,6 +75,7 @@ scriptencoding utf-8
     set completeopt=menu,preview
     set infercase               " ?
     set cmdheight=2             " ?
+    set nowrap
 
     " Tab options
     set autoindent              " copy indent from previous line
