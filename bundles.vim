@@ -68,6 +68,8 @@
     NeoBundle 'jeffkreeftmeijer/vim-numbertoggle'
         let g:loaded_numbertoggle = 0
 
+    NeoBundle 'xolox/vim-misc'
+
 " }}}
 
 
@@ -287,11 +289,14 @@
 
 " Unite {{{
     
-    NeoBundle 'klen/unite-radio.vim'
     NeoBundle 'Shougo/unite.vim'
         nnoremap <C-l>  :Unite<CR>
+    NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : { 'unite_sources' : ['history/command', 'history/search']}}
+    NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources': 'colorscheme'}}
+    NeoBundleLazy 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}
 
 " }}}
+
 
 " My utils {{{
 
@@ -301,6 +306,6 @@
     " NeoBundleLazy '7kfpun/pypi.vim', {'autoload': {'commands': 'Pypi'}}
      
     NeoBundle '7kfpun/bing.vim'
-    NeoBundle '7kfpun/unite-bing.vim'
+        nnoremap <C-b>  :Unite bing -winheight=10<CR>
 
 " }}}
