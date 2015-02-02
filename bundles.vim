@@ -65,6 +65,10 @@
         vnoremap <silent><F3> :MaximizerToggle<CR>gv
         inoremap <silent><F3> <C-o>:MaximizerToggle<CR>
 
+    " NeoBundle 'junegunn/vim-easy-align'
+    NeoBundle 'pangloss/vim-javascript'
+    NeoBundle 'mxw/vim-jsx'
+
 " }}}
 
 
