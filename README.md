@@ -28,7 +28,7 @@ Instalation
 
 2. Go to cloned directory and init submodules.
 
-        cd ~/.vim && git submodule init && git submodule update
+        cd ~/.vim && git submodule update --init --recursive
 
 3. Install plugins.
 
@@ -37,5 +37,3 @@ Instalation
 4. Enjoy your vim!
 
         source ~/.vim/.vimrc
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/7kfpun/.vim/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
