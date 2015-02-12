@@ -2,7 +2,8 @@ ack:
 	@sudo apt-get install -y ack-grep exuberant-ctags
 	@sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
 
-all: submodule install
+all: submodule
+	install
 
 submodule:
 	@git submodule update --init --recursive
