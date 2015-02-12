@@ -18,7 +18,7 @@ scriptencoding utf-8
         set nocompatible                           " enable vim features
 
         set backupdir=$HOME/.cache/vim/backup      " where to put backup files
-        set backup                                 " make backup file and leave it around 
+        set backup                                 " make backup file and leave it around
         set backupskip+=svn-commit.tmp,svn-commit.[0-9]*.tmp
 
         set directory=/tmp                         " where to put swap files
@@ -257,6 +257,18 @@ function! SplitToggle()
 endfunc
 
 nnoremap <leader>= :call SplitToggle()<cr>
+
+" Removes trailing spaces
+function TrimWhiteSpace()
+    %s/\s*$//
+    ''
+:endfunction
+
+set list listchars=trail:.,extends:>
+autocmd FileWritePre * :call TrimWhiteSpace()
+autocmd FileAppendPre * :call TrimWhiteSpace()
+autocmd FilterWritePre * :call TrimWhiteSpace()
+autocmd BufWritePre * :call TrimWhiteSpace()
 
 " }}}
 
