@@ -66,8 +66,6 @@
         inoremap <silent><F3> <C-o>:MaximizerToggle<CR>
 
     " NeoBundle 'junegunn/vim-easy-align'
-    NeoBundle 'pangloss/vim-javascript'
-    NeoBundle 'mxw/vim-jsx'
 
 " }}}
 
@@ -248,11 +246,11 @@
         let g:neocomplcache_enable_at_startup=1
         let g:neocomplcache_enable_fuzzy_completion=1
 
-    NeoBundle 'scrooloose/syntastic' 
-        let g:syntastic_error_symbol = '✗'
-        let g:syntastic_style_error_symbol = '✠'
-        let g:syntastic_warning_symbol = '∆'
-        let g:syntastic_style_warning_symbol = '≈'
+    " NeoBundle 'scrooloose/syntastic' 
+    "     let g:syntastic_error_symbol = '✗'
+    "     let g:syntastic_style_error_symbol = '✠'
+    "     let g:syntastic_warning_symbol = '∆'
+    "     let g:syntastic_style_warning_symbol = '≈'
 
     NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html', 'xhtml', 'css']}}
     NeoBundleLazy 'vim-scripts/HTML-AutoCloseTag', {'autoload': {'filetypes': ['html', 'xhtml']}}
@@ -284,8 +282,8 @@
 
     NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
     NeoBundleLazy 'heavenshell/vim-jsdoc', {'autoload': {'filetypes': ['javascript']}}
-    NeoBundleLazy 'hallettj/jslint.vim', {'autoload': {'filetypes': ['javascript']}}
-        let g:JSLintHighlightErrorLine = 0
+    " NeoBundleLazy 'hallettj/jslint.vim', {'autoload': {'filetypes': ['javascript']}}
+        " let g:JSLintHighlightErrorLine = 0
     NeoBundleLazy 'maksimr/vim-jsbeautify', {'autoload': {'filetypes': ['javascript']}}
         au FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
         au FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
@@ -297,6 +295,8 @@
 
     NeoBundleLazy 'leshill/vim-json', {'autoload': {'filetypes': ['javascript','json']}}
 
+    " NeoBundle 'mxw/vim-jsx'
+     
 " }}}
 
 
