@@ -41,6 +41,7 @@ scriptencoding utf-8
         endif
         set rtp+=$HOME/.vim/bundle/neobundle.vim
         let g:neobundle#types#git#clone_depth = 2
+        let g:neobundle#install_process_timeout = 3000
         call neobundle#begin($HOME . '/.vim/bundle')
         NeoBundleFetch 'Shougo/neobundle.vim'
 
