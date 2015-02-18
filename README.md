@@ -19,6 +19,10 @@ Requirements
 
             sudo apt-get install silversearcher-ag
 
+    * jshint, less
+
+            sudo npm install -g jshint less
+
 Instalation
 ===========
 

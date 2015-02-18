@@ -67,6 +67,9 @@
 
     " NeoBundle 'junegunn/vim-easy-align'
 
+    " css/less/sass/html color preview for vim.
+    NeoBundle 'gorodinskiy/vim-coloresque'
+
 " }}}
 
 
@@ -282,8 +285,9 @@
 
     NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
     NeoBundleLazy 'heavenshell/vim-jsdoc', {'autoload': {'filetypes': ['javascript']}}
-    " NeoBundleLazy 'hallettj/jslint.vim', {'autoload': {'filetypes': ['javascript']}}
+    NeoBundleLazy 'wookiehangover/jshint.vim', {'autoload': {'filetypes': ['javascript']}}
         " let g:JSLintHighlightErrorLine = 0
+        let JSHintUpdateWriteOnly = 1
     NeoBundleLazy 'maksimr/vim-jsbeautify', {'autoload': {'filetypes': ['javascript']}}
         au FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
         au FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
@@ -294,6 +298,8 @@
         au BufNewFile,BufRead Jakefile setf javascript
 
     NeoBundleLazy 'leshill/vim-json', {'autoload': {'filetypes': ['javascript','json']}}
+
+    NeoBundleLazy 'groenewege/vim-less', {'autoload': {'filetypes': 'less'}}
 
     " NeoBundle 'mxw/vim-jsx'
 
