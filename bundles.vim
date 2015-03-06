@@ -70,6 +70,12 @@
     " css/less/sass/html color preview for vim.
     NeoBundle 'gorodinskiy/vim-coloresque'
 
+    NeoBundle 'haya14busa/incsearch.vim'
+        let g:incsearch#auto_nohlsearch = 1
+        map /  <Plug>(incsearch-forward)
+        map ?  <Plug>(incsearch-backward)
+        map g/ <Plug>(incsearch-stay)
+
 " }}}
 
 
