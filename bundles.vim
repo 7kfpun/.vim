@@ -27,7 +27,7 @@
     " Edit large files quickly
     NeoBundle 'LargeFile'
 
-    " pseudo clipboard register for non-GUI version of Vim 
+    " pseudo clipboard register for non-GUI version of Vim
     NeoBundle 'unphased/vim-fakeclip'
 
     " Powerful shell implemented by vim.
@@ -37,14 +37,14 @@
     " Intelligently reopen files where you left off.
     NeoBundle 'dietsche/vim-lastplace'
 
-    " Make scrolling in Vim more pleasant. 
+    " Make scrolling in Vim more pleasant.
     NeoBundle 'terryma/vim-smooth-scroll'
-        " noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-        " noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-        " noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-        " noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
-        noremap <silent> <pageup> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-        noremap <silent> <pagedown> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+        noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+        noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+        noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+        noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+        " noremap <silent> <pageup> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+        " noremap <silent> <pagedown> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 
     NeoBundleLazy 'junegunn/limelight.vim', {'autoload': {'commands': 'Limelight'}}
         " au VimEnter * Limelight
@@ -65,10 +65,17 @@
         vnoremap <silent><F3> :MaximizerToggle<CR>gv
         inoremap <silent><F3> <C-o>:MaximizerToggle<CR>
 
-    NeoBundle 'jeffkreeftmeijer/vim-numbertoggle'
-        let g:loaded_numbertoggle = 0
+    " NeoBundle 'xolox/vim-misc'
+    " NeoBundle 'junegunn/vim-easy-align'
 
-    NeoBundle 'xolox/vim-misc'
+    " css/less/sass/html color preview for vim.
+    NeoBundle 'gorodinskiy/vim-coloresque'
+
+    NeoBundle 'haya14busa/incsearch.vim'
+        let g:incsearch#auto_nohlsearch = 1
+        map /  <Plug>(incsearch-forward)
+        map ?  <Plug>(incsearch-backward)
+        map g/ <Plug>(incsearch-stay)
 
 " }}}
 
@@ -84,7 +91,7 @@
         nnoremap <leader>gg :GitGutterToggle<CR>
 
     " a Git wrapper
-    NeoBundle 'tpope/vim-fugitive' 
+    NeoBundle 'tpope/vim-fugitive'
         nnoremap <silent> <leader>gs :Gstatus<CR>
         nnoremap <silent> <leader>gd :Gdiff<CR>
         nnoremap <silent> <leader>gc :Gcommit<CR>
@@ -96,7 +103,7 @@
         au BufReadPost fugitive://* set bufhidden=delete
 
     " gitk for Vim
-    NeoBundleLazy 'gregsexton/gitv', {'depends': ['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}} 
+    NeoBundleLazy 'gregsexton/gitv', {'depends': ['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}}
         nnoremap <silent> <leader>gv :Gitv<CR>
         nnoremap <silent> <leader>gV :Gitv!<CR>
 
@@ -114,7 +121,7 @@
 " ========
 
     " Vim plugin for intensely orgasmic commenting
-    NeoBundle 'scrooloose/nerdcommenter' 
+    NeoBundle 'scrooloose/nerdcommenter'
         let NERDSpaceDelims = 1
         let g:NERDCustomDelimiters = { 'ansible': { 'left': '#'} }
 
@@ -124,7 +131,7 @@
     " True Sublime Text style multiple selections for Vim
     NeoBundle 'terryma/vim-multiple-cursors'
 
-    " visually select increasingly larger regions of text using the same 
+    " visually select increasingly larger regions of text using the same
     " key combination.
     NeoBundle 'terryma/vim-expand-region'
 
@@ -151,7 +158,7 @@
 " ===============
 
     " lean & mean statusline for vim that's light as air
-    NeoBundle 'bling/vim-airline' 
+    NeoBundle 'bling/vim-airline'
         " let g:airline#extensions#tabline#enabled = 1
         let g:airline_detect_iminsert = 1
         let g:airline_left_sep = ''
@@ -169,7 +176,7 @@
 " ==========
 
     " A tree explorer plugin for vim.
-    NeoBundleLazy 'scrooloose/nerdtree', {'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}} 
+    NeoBundleLazy 'scrooloose/nerdtree', {'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}}
         let g:NERDTreeWinSize = 30
         let g:NERDTreeIgnore = ['\~$', '\.AppleDouble$', '\.beam$', 'build$',
                     \'dist$', '\.DS_Store$', '\.egg$', '\.egg-info$', '\.la$',
@@ -183,7 +190,7 @@
         " Start NERDTree when vim starts up
         au VimEnter * NERDTreeToggle
 
-    NeoBundleLazy 'jistr/vim-nerdtree-tabs', {'autoload': {'commands': 'NERDTreeTabsToggle'}}  
+    NeoBundleLazy 'jistr/vim-nerdtree-tabs', {'autoload': {'commands': 'NERDTreeTabsToggle'}}
         let g:nerdtree_tabs_open_on_console_startup = 1
         noremap <silent> <F7> :NERDTreeTabsToggle<CR>
 
@@ -205,25 +212,39 @@
         " au VimEnter * TagbarToggle
 
     " Find files
-    NeoBundle 'kien/ctrlp.vim' 
+    NeoBundle 'kien/ctrlp.vim'
         let g:ctrlp_show_hidden = 1
         let g:ctrlp_dont_split = 'NERD_tree_2'
         " let g:ctrlp_map = '<leader>p'
         let g:ctrlp_map = '<c-p>'
         let g:ctrlp_custom_ignore = {
-                    \ 'dir':  '\v[\/]\.(git|hg|svn|env)$',
+                    \ 'dir':  '\v[\/](\.git|\.hg|\.svn|\.env|\.tmp|node_modules|bower_components|vendor)$',
                     \ 'file': '\v\.(exe|so|dll)$',
                     \ 'link': 'some_bad_symbolic_links',
                     \ }
 
     " Generate the Task List.
-    NeoBundleLazy 'JessicaKMcIntosh/TagmaTasks', {'autoload': {'commands': 'TagmaTaskToggle'}}  
+    NeoBundleLazy 'JessicaKMcIntosh/TagmaTasks', {'autoload': {'commands': 'TagmaTaskToggle'}}
         nnoremap <silent> <leader>td :TagmaTaskToggle<CR>
 
-    " Display your undo history in a graph. 
+    " Display your undo history in a graph.
     NeoBundleLazy 'mbbill/undotree', {'autoload': {'commands': 'UndotreeToggle'}}
         let g:undotree_WindowLayout = 3
         nnoremap <leader>ud :UndotreeToggle<CR>
+
+" }}}
+
+
+" Unite {{{
+" =========
+
+    " Unite and create user interfaces.
+    NeoBundleLazy 'Shougo/unite.vim', {'autoload': {'commands': 'Unite'}}
+        nnoremap <C-l> :Unite<CR>
+
+    NeoBundle 'junkblocker/unite-tasklist'
+    NeoBundle 'klen/unite-radio.vim'
+    NeoBundle 'moznion/unite-git-conflict.vim'
 
 " }}}
 
@@ -235,11 +256,11 @@
         let g:neocomplcache_enable_at_startup=1
         let g:neocomplcache_enable_fuzzy_completion=1
 
-    NeoBundle 'scrooloose/syntastic' 
-        let g:syntastic_error_symbol = '✗'
-        let g:syntastic_style_error_symbol = '✠'
-        let g:syntastic_warning_symbol = '∆'
-        let g:syntastic_style_warning_symbol = '≈'
+    " NeoBundle 'scrooloose/syntastic'
+    "     let g:syntastic_error_symbol = '✗'
+    "     let g:syntastic_style_error_symbol = '✠'
+    "     let g:syntastic_warning_symbol = '∆'
+    "     let g:syntastic_style_warning_symbol = '≈'
 
     NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html', 'xhtml', 'css']}}
     NeoBundleLazy 'vim-scripts/HTML-AutoCloseTag', {'autoload': {'filetypes': ['html', 'xhtml']}}
@@ -271,8 +292,9 @@
 
     NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
     NeoBundleLazy 'heavenshell/vim-jsdoc', {'autoload': {'filetypes': ['javascript']}}
-    NeoBundleLazy 'hallettj/jslint.vim', {'autoload': {'filetypes': ['javascript']}}
-        let g:JSLintHighlightErrorLine = 0
+    NeoBundleLazy 'wookiehangover/jshint.vim', {'autoload': {'filetypes': ['javascript']}}
+        " let g:JSLintHighlightErrorLine = 0
+        let JSHintUpdateWriteOnly = 1
     NeoBundleLazy 'maksimr/vim-jsbeautify', {'autoload': {'filetypes': ['javascript']}}
         au FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
         au FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
@@ -284,11 +306,15 @@
 
     NeoBundleLazy 'leshill/vim-json', {'autoload': {'filetypes': ['javascript','json']}}
 
+    NeoBundleLazy 'groenewege/vim-less', {'autoload': {'filetypes': 'less'}}
+
+    " NeoBundle 'mxw/vim-jsx'
+
 " }}}
 
 
 " Unite {{{
-    
+
     NeoBundle 'Shougo/unite.vim'
         nnoremap <C-l>  :Unite<CR>
     NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : { 'unite_sources' : ['history/command', 'history/search']}}
@@ -304,8 +330,7 @@
     NeoBundle '7kfpun/pypi.vim'
         let g:enable_add_latest_version = 1
     " NeoBundleLazy '7kfpun/pypi.vim', {'autoload': {'commands': 'Pypi'}}
-     
+
     NeoBundle '7kfpun/bing.vim'
-        nnoremap <C-b>  :Unite bing -winheight=10<CR>
 
 " }}}

@@ -1,4 +1,4 @@
-﻿" vim: fdm=marker ts=4 sts=4 sw=4 fdl=0
+" vim: fdm=marker ts=4 sts=4 sw=4 fdl=0
 
 scriptencoding utf-8
 
@@ -18,7 +18,7 @@ scriptencoding utf-8
         set nocompatible                           " enable vim features
 
         set backupdir=$HOME/.cache/vim/backup      " where to put backup files
-        set backup                                 " make backup file and leave it around 
+        set backup                                 " make backup file and leave it around
         set backupskip+=svn-commit.tmp,svn-commit.[0-9]*.tmp
 
         set directory=/tmp                         " where to put swap files
@@ -41,6 +41,7 @@ scriptencoding utf-8
         endif
         set rtp+=$HOME/.vim/bundle/neobundle.vim
         let g:neobundle#types#git#clone_depth = 2
+        let g:neobundle#install_process_timeout = 3000
         call neobundle#begin($HOME . '/.vim/bundle')
         NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -75,6 +76,7 @@ scriptencoding utf-8
     set completeopt=menu,preview
     set infercase               " ?
     set cmdheight=2             " ?
+    set nowrap
 
     " Tab options
     set autoindent              " copy indent from previous line
@@ -124,7 +126,7 @@ scriptencoding utf-8
     set encoding=utf-8           " Default encoding
     set fileencodings=utf-8,cp1251,koi8-r,cp866
     set termencoding=utf-8
-    set bomb
+    set nobomb
 
     " Wildmenu
     set wildmenu                " use wildmenu ...
@@ -254,6 +256,27 @@ function! SplitToggle()
 endfunc
 
 nnoremap <leader>= :call SplitToggle()<cr>
+
+" Removes trailing spaces
+function TrimWhiteSpace()
+    %s/\s*$//
+    ''
+:endfunction
+
+set list listchars=trail:.,extends:>
+autocmd FileWritePre * :call TrimWhiteSpace()
+autocmd FileAppendPre * :call TrimWhiteSpace()
+autocmd FilterWritePre * :call TrimWhiteSpace()
+autocmd BufWritePre * :call TrimWhiteSpace()
+
+" Remove ending blank lines
+function TrimEndLines()
+    let save_cursor = getpos(".")
+    :silent! %s#\($\n\s*\)\+\%$##
+    call setpos('.', save_cursor)
+endfunction
+
+au BufWritePre *.py call TrimEndLines()
 
 " }}}
 
