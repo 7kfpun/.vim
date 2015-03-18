@@ -8,8 +8,8 @@ submodule:
 	@git submodule update --init --recursive
 
 install: clean
-	@ln -s $(CURDIR)/.vimrc $(HOME)/.
 	@vim +NeoBundleInstall +qall
+	@ln -s $(CURDIR)/.vimrc $(HOME)/.
 
 clean:
 	rm -rf $(HOME)/.vimrc

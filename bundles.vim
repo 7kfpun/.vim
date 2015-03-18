@@ -65,6 +65,7 @@
         vnoremap <silent><F3> :MaximizerToggle<CR>gv
         inoremap <silent><F3> <C-o>:MaximizerToggle<CR>
 
+    " NeoBundle 'xolox/vim-misc'
     " NeoBundle 'junegunn/vim-easy-align'
 
     " css/less/sass/html color preview for vim.
@@ -316,12 +317,24 @@
 " }}}
 
 
+" Unite {{{
+
+    NeoBundle 'Shougo/unite.vim'
+        nnoremap <C-l>  :Unite<CR>
+    NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : { 'unite_sources' : ['history/command', 'history/search']}}
+    NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources': 'colorscheme'}}
+    NeoBundleLazy 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}
+
+" }}}
+
+
 " My utils {{{
 
     NeoBundleLazy '7kfpun/checkip.vim', {'autoload': {'commands': 'CheckIp'}}
     NeoBundle '7kfpun/pypi.vim'
         let g:enable_add_latest_version = 1
     " NeoBundleLazy '7kfpun/pypi.vim', {'autoload': {'commands': 'Pypi'}}
+
     NeoBundle '7kfpun/bing.vim'
 
 " }}}
