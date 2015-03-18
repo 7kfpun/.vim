@@ -25,14 +25,14 @@
     nmap <leader>a <Esc>:Ack!
 
     " Edit large files quickly
-    NeoBundle 'LargeFile'
+    " NeoBundle 'LargeFile'
 
     " pseudo clipboard register for non-GUI version of Vim
     NeoBundle 'unphased/vim-fakeclip'
 
     " Powerful shell implemented by vim.
     NeoBundle 'Shougo/vimshell.vim'
-        nnoremap <silent> <F5> :VimShell<CR>
+        " nnoremap <silent> <F5> :VimShell<CR>
 
     " Intelligently reopen files where you left off.
     NeoBundle 'dietsche/vim-lastplace'
@@ -269,16 +269,20 @@
     NeoBundleLazy 'heavenshell/vim-pydocstring', {'autoload': {'filetypes': 'python'}}
     NeoBundleLazy 'klen/python-mode.git', {'autoload': {'filetypes': 'python'}}
         let g:pymode_breakpoint_cmd = "import ipdb; ipdb.set_trace()  # XXX BREAKPOINT"
-        " let g:pymode_lint_checkers = ['pylint', 'pep8', 'pep257', 'pyflakes', 'mccabe']
+        let g:pymode_lint_checkers = ['pep8', 'pep257', 'pyflakes', 'mccabe']
         let g:pymode_lint_ignore = 'C901,C0110,C0111'
+        " C901 is too complex
+        " C0110 Exported classes should have docstrings.
+        " C0111 Missing docstring.
         let g:pymode_lint_sort = ['E', 'C', 'W', 'R', 'I', 'F', 'D']
         let g:pymode_lint_unmodified = 1
-        let g:pymode_options_max_line_length = 80
+        let g:pymode_options_max_line_length = 120
         let g:pymode_rope_lookup_project = 0
         let g:pymode_syntax_highlight_equal_operator = 0
         let g:pymode_rope_lookup_project = 0
-        let g:pymode_rope=0
+        let g:pymode_rope = 0
         " let g:pymode_python = 'python3'
+
     NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}}
         let g:jedi#popup_on_dot=0
     NeoBundle 'ervandew/supertab'
