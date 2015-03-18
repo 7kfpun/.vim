@@ -39,10 +39,10 @@
 
     " Make scrolling in Vim more pleasant.
     NeoBundle 'terryma/vim-smooth-scroll'
-        noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-        noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-        noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-        noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+        noremap <silent> <c-k> :call smooth_scroll#up(&scroll/2, 0, 4)<CR>
+        noremap <silent> <c-j> :call smooth_scroll#down(&scroll/2, 0, 4)<CR>
+        noremap <silent> <c-u> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+        noremap <silent> <c-d> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
         " noremap <silent> <pageup> :call smooth_scroll#up(&scroll, 0, 2)<CR>
         " noremap <silent> <pagedown> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 
@@ -269,19 +269,18 @@
 
     NeoBundleLazy 'heavenshell/vim-pydocstring', {'autoload': {'filetypes': 'python'}}
     NeoBundleLazy 'klen/python-mode.git', {'autoload': {'filetypes': 'python'}}
-        let g:pymode_breakpoint_cmd = "import ipdb; ipdb.set_trace()  # XXX BREAKPOINT"
-        let g:pymode_lint_checkers = ['pep8', 'pep257', 'pyflakes', 'mccabe']
-        let g:pymode_lint_ignore = 'C901,C0110,C0111'
         " C901 is too complex
         " C0110 Exported classes should have docstrings.
         " C0111 Missing docstring.
+        let g:pymode_breakpoint_cmd = "import ipdb; ipdb.set_trace()  # XXX BREAKPOINT"
+        let g:pymode_lint_checkers = ['pep8', 'pep257', 'pyflakes', 'mccabe']
+        let g:pymode_lint_ignore = 'C901,C0110,C0111'
         let g:pymode_lint_sort = ['E', 'C', 'W', 'R', 'I', 'F', 'D']
         let g:pymode_lint_unmodified = 1
         let g:pymode_options_max_line_length = 120
+        let g:pymode_rope = 0
         let g:pymode_rope_lookup_project = 0
         let g:pymode_syntax_highlight_equal_operator = 0
-        let g:pymode_rope_lookup_project = 0
-        let g:pymode_rope = 0
         " let g:pymode_python = 'python3'
 
     NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}}
@@ -300,10 +299,10 @@
         " let g:JSLintHighlightErrorLine = 0
         let JSHintUpdateWriteOnly = 1
     NeoBundleLazy 'maksimr/vim-jsbeautify', {'autoload': {'filetypes': ['javascript']}}
-        au FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
-        au FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
-        au FileType eruby vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
         au FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+        au FileType eruby vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+        au FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+        au FileType javascript vnoremap <buffer> <c-f> :call RangeJsBeautify()<cr>
         au BufNewFile,BufRead *.js setf javascript
         au BufNewFile,BufRead *.jsm setf javascript
         au BufNewFile,BufRead Jakefile setf javascript
