@@ -219,6 +219,9 @@ scriptencoding utf-8
     " Insert newline without entering insert mode
     nmap <Leader><CR> o<Esc>k
 
+    " source my vimrc
+    nmap <F2> :source $MYVIMRC<CR>
+
 " }}}
 
 
@@ -258,10 +261,10 @@ endfunc
 nnoremap <leader>= :call SplitToggle()<cr>
 
 " Removes trailing spaces
-function TrimWhiteSpace()
+function! TrimWhiteSpace()
     %s/\s*$//
     ''
-:endfunction
+    :endfunction
 
 set list listchars=trail:.,extends:>
 autocmd FileWritePre * :call TrimWhiteSpace()
@@ -270,7 +273,7 @@ autocmd FilterWritePre * :call TrimWhiteSpace()
 autocmd BufWritePre * :call TrimWhiteSpace()
 
 " Remove ending blank lines
-function TrimEndLines()
+function! TrimEndLines()
     let save_cursor = getpos(".")
     :silent! %s#\($\n\s*\)\+\%$##
     call setpos('.', save_cursor)
