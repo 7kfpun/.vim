@@ -204,6 +204,11 @@ scriptencoding utf-8
     nnoremap <F10> :set invpaste paste?<CR>
     set pastetoggle=<F10>
 
+    " Set paste, list and swap
+    nnoremap <silent> <leader>sp :set paste! paste?<CR>
+    nnoremap <silent> <leader>sl :set list! list?<CR>
+    nnoremap <silent> <leader>sw :set wrap! wrap?<CR>
+
     " Tab Switching
     noremap <leader>1 1gt
     noremap <leader>2 2gt
