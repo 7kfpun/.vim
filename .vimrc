@@ -276,10 +276,12 @@ function TrimEndLines()
     call setpos('.', save_cursor)
 endfunction
 
-au BufWritePre *.py call TrimEndLines()
+autocmd BufWritePre *.py call TrimEndLines()
+
+" retab python files on write
+autocmd BufWritePre *.py :retab
 
 " }}}
-
 
 
 " " Bundle 'kshenoy/vim-signature.git'

@@ -274,7 +274,7 @@
         " C0111 Missing docstring.
         let g:pymode_breakpoint_cmd = "import ipdb; ipdb.set_trace()  # XXX BREAKPOINT"
         let g:pymode_lint_checkers = ['pep8', 'pep257', 'pyflakes', 'mccabe']
-        let g:pymode_lint_ignore = 'C901,C0110,C0111'
+        let g:pymode_lint_ignore = 'D100,C901,C0110,C0111'
         let g:pymode_lint_sort = ['E', 'C', 'W', 'R', 'I', 'F', 'D']
         let g:pymode_lint_unmodified = 1
         let g:pymode_options_max_line_length = 120
