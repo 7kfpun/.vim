@@ -71,6 +71,12 @@
     " css/less/sass/html color preview for vim.
     NeoBundle 'gorodinskiy/vim-coloresque'
 
+    " Highlight colors in css files
+    NeoBundle 'skammer/vim-css-color'
+
+    " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
+    NeoBundle 'hail2u/vim-css3-syntax'
+
     NeoBundle 'haya14busa/incsearch.vim'
         let g:incsearch#auto_nohlsearch = 1
         map /  <Plug>(incsearch-forward)
@@ -135,8 +141,7 @@
     " key combination.
     NeoBundle 'terryma/vim-expand-region'
 
-    " The plugin provides mappings to easily delete, change and add such
-    " surroundings in pairs.
+    " The plugin provides mappings to easily delete, change and add such surroundings in pairs.
     NeoBundle 'tpope/vim-surround'
 
     " enable repeating supported plugin maps with "."
@@ -335,5 +340,10 @@
     " NeoBundleLazy '7kfpun/pypi.vim', {'autoload': {'commands': 'Pypi'}}
 
     NeoBundle '7kfpun/bing.vim'
+
+    NeoBundle '7kfpun/finance.vim'
+    set timeoutlen=10000
+    autocmd FocusLost * call Finance()
+        let g:finance_watchlist = ['0005.HK', '1211.HK', '1398.HK', '2318.HK', '2800.HK']
 
 " }}}
