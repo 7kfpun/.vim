@@ -213,7 +213,7 @@
                     \ 'kind2scope': {'h': 'header'},
                     \ 'scope2kind': {'header': 'h'}
                     \ }
-        nnoremap <silent> <F7> :TagbarToggle<CR>
+        nnoremap <silent> <C-F6> :TagbarToggle<CR>
         " Start TagbarToggle when vim starts up
         " au VimEnter * TagbarToggle
 
