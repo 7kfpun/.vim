@@ -84,6 +84,7 @@
 
 
 " Git {{{
+" =======
 
     " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
     NeoBundle 'airblade/vim-gitgutter'
@@ -107,7 +108,7 @@
 
     " Fugitive extension to manage and merge Git branches
     NeoBundleLazy 'idanarye/vim-merginal', {'depends': ['tpope/vim-fugitive'], 'autoload': {'commands': 'MerginalToggle'}}
-        nnoremap <silent> <F10> :MerginalToggle<CR>
+        nnoremap <silent> <C-F9> :MerginalToggle<CR>
 
     " gitk for Vim
     NeoBundleLazy 'gregsexton/gitv', {'depends': ['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}}
