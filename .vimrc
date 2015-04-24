@@ -202,9 +202,8 @@ scriptencoding utf-8
     cmap WA wa
     cmap WAQ waq
 
-    " Set paste
-    nnoremap <F10> :set invpaste paste?<CR>
-    set pastetoggle=<F10>
+    " Toggle paste mode on and off
+    nnoremap <leader>p :setlocal paste!<cr>
 
     " Set paste, list and swap
     nnoremap <silent> <leader>sp :set paste! paste?<CR>
