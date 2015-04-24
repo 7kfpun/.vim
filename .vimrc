@@ -202,14 +202,6 @@ scriptencoding utf-8
     cmap WA wa
     cmap WAQ waq
 
-    " Toggle paste mode on and off
-    nnoremap <leader>p :setlocal paste!<cr>
-
-    " Set paste, list and swap
-    nnoremap <silent> <leader>sp :set paste! paste?<CR>
-    nnoremap <silent> <leader>sl :set list! list?<CR>
-    nnoremap <silent> <leader>sw :set wrap! wrap?<CR>
-
     " Tab Switching
     noremap <leader>1 1gt
     noremap <leader>2 2gt
@@ -225,8 +217,25 @@ scriptencoding utf-8
     " Insert newline without entering insert mode
     nmap <Leader><CR> o<Esc>k
 
+" }}}
+
+
+" Misc {{{
+" ========
+
+    " Remove the Windows ^M - when the encodings gets messed up
+    noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+    " Toggle paste mode on and off
+    nnoremap <leader>p :setlocal paste!<cr>
+
+    " Set paste, list and swap
+    nnoremap <leader>sp :set paste! paste?<CR>
+    nnoremap <leader>sl :set list! list?<CR>
+    nnoremap <leader>sw :set wrap! wrap?<CR>
+
     " source my vimrc
-    nmap <F2> :source $MYVIMRC<CR>
+    nnoremap <leader>so :source $MYVIMRC<CR>
 
 " }}}
 
@@ -249,6 +258,8 @@ set exrc
 set secure
 
 call neobundle#end()
+
+" }}}
 
 
 " functions {{{
