@@ -133,10 +133,16 @@ scriptencoding utf-8
     " Wildmenu
     set wildmenu                " use wildmenu ...
     set wildcharm=<TAB>
-    set wildignore=*.pyc        " ignore file pattern
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
-    set wildignore+=*/bower_components/*,*/node_modules/*
+    set wildignore=*.o,*~,*.pyc
+    if has("win16") || has("win32")
+        set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+        set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
+        set wildignore+=*\\bower_components\\*,*\\node_modules\\*
+    else
+        set wildignore+=.git\*,.hg\*,.svn\*
+        set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+        set wildignore+=*/bower_components/*,*/node_modules/*
+    endif
 
     " Undo
     if has('persistent_undo')
@@ -153,6 +159,11 @@ scriptencoding utf-8
     " X-clipboard support
     if has('unnamedplus')
         set clipboard+=unnamed     " enable x-clipboard
+    endif
+
+    " Mouse enabled
+    if has('mouse')
+        set mouse=a
     endif
 
     " Term
@@ -228,6 +239,8 @@ scriptencoding utf-8
 
     " Toggle paste mode on and off
     nnoremap <leader>p :setlocal paste!<cr>
+    " nnoremap <F10> :set invpaste paste?<CR>
+    set pastetoggle=<F10>
 
     " Set paste, list and swap
     nnoremap <leader>sp :set paste! paste?<CR>
