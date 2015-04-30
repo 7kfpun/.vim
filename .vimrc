@@ -162,9 +162,9 @@ scriptencoding utf-8
     endif
 
     " Mouse enabled
-    if has('mouse')
-        set mouse=a
-    endif
+    " if has('mouse')
+    "     set mouse=a
+    " endif
 
     " Term
     if &term =~ "xterm"
