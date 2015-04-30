@@ -80,6 +80,8 @@
         map ?  <Plug>(incsearch-backward)
         map g/ <Plug>(incsearch-stay)
 
+    NeoBundle 'vim-scripts/highlight.vim'
+
 " }}}
 
 
