@@ -231,6 +231,12 @@
                     \ 'link': 'some_bad_symbolic_links',
                     \ }
 
+    " Jump to a function via ctrlp.vim interface
+    NeoBundle 'tacahiroy/ctrlp-funky'
+        nnoremap <Leader>fu :CtrlPFunky<Cr>
+        " narrow the list down with a word under cursor
+        nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
     " Generate the Task List.
     NeoBundleLazy 'JessicaKMcIntosh/TagmaTasks', {'autoload': {'commands': 'TagmaTaskToggle'}}
         let g:TagmaTasksAutoUpdate = 1
