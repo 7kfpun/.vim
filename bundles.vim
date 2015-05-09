@@ -56,9 +56,6 @@
     " A calendar application for Vim
     NeoBundleLazy 'itchyny/calendar.vim', {'autoload': {'commands': 'Calendar'}}
 
-    " Quick Google lookup directly from Vim.
-    NeoBundleLazy 'szw/vim-g', {'autoload': {'commands': 'Google'}}
-
     " Maximizes and restores the current window in Vim.
     NeoBundleLazy 'szw/vim-maximizer', {'autoload': {'commands': 'MaximizerToggle'}}
         nnoremap <silent><F3> :MaximizerToggle<CR>
@@ -83,17 +80,21 @@
         map ?  <Plug>(incsearch-backward)
         map g/ <Plug>(incsearch-stay)
 
+    " Highlight lines or patterns of interest in different colors.
+    NeoBundle 'vim-scripts/highlight.vim'
+
 " }}}
 
 
 " Git {{{
+" =======
 
     " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
     NeoBundle 'airblade/vim-gitgutter'
     NeoBundleLazy 'airblade/vim-gitgutter', {'autoload': {'commands': 'GitGutterToggle'}}
         let g:gitgutter_sign_column_always = 1
         let g:gitgutter_enabled = 1
-        nnoremap <silent> <F9> :GitGutterToggle<CR>
+        " nnoremap <silent> <F9> :GitGutterToggle<CR>
         nnoremap <leader>gg :GitGutterToggle<CR>
 
     " a Git wrapper
@@ -108,6 +109,10 @@
         nnoremap <silent> <leader>gr :Gremove<CR>
         au BufReadPost fugitive://* set bufhidden=delete
 
+    " Fugitive extension to manage and merge Git branches
+    NeoBundleLazy 'idanarye/vim-merginal', {'depends': ['tpope/vim-fugitive'], 'autoload': {'commands': 'MerginalToggle'}}
+        nnoremap <silent> <C-F9> :MerginalToggle<CR>
+
     " gitk for Vim
     NeoBundleLazy 'gregsexton/gitv', {'depends': ['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}}
         nnoremap <silent> <leader>gv :Gitv<CR>
@@ -118,7 +123,10 @@
 
     " A powerful Git log viewer
     NeoBundleLazy 'cohama/agit.vim', {'autoload': {'commands': 'Agit'}}
-        noremap <silent> <F4> :Agit<CR>
+        noremap <silent> <F9> :Agit<CR>
+
+    " Another git manipulation plugin; An alternative of vim-fugitive.
+    NeoBundleLazy 'lambdalisue/vim-gita', {'autoload': {'commands': ['Gita']}}
 
 " }}}
 
@@ -197,7 +205,7 @@
 
     NeoBundleLazy 'jistr/vim-nerdtree-tabs', {'autoload': {'commands': 'NERDTreeTabsToggle'}}
         let g:nerdtree_tabs_open_on_console_startup = 1
-        noremap <silent> <F7> :NERDTreeTabsToggle<CR>
+        " map <Leader>n :NERDTreeTabsToggle<CR>
 
     NeoBundleLazy 'majutsushi/tagbar.git', {'autoload': {'commands': ['TagbarToggle']}}
         let g:tagbar_width = 30
@@ -205,14 +213,13 @@
         " let g:tagbar_autofocus = 1  " set focus to TagBar when opening it
         let g:tagbar_type_rst = {
                     \ 'ctagstype': 'rst',
-                    \ 'kinds': [ 'r:references', 'h:headers' ],
+                    \ 'kinds': ['r:references', 'h:headers'],
                     \ 'sort': 0,
                     \ 'sro': '..',
-                    \ 'kind2scope': { 'h': 'header' },
-                    \ 'scope2kind': { 'header': 'h' }
+                    \ 'kind2scope': {'h': 'header'},
+                    \ 'scope2kind': {'header': 'h'}
                     \ }
-        " nnoremap <silent> <F8> :TagbarToggle<CR>
-
+        nnoremap <silent> <C-F6> :TagbarToggle<CR>
         " Start TagbarToggle when vim starts up
         " au VimEnter * TagbarToggle
 
@@ -228,9 +235,17 @@
                     \ 'link': 'some_bad_symbolic_links',
                     \ }
 
+    " Jump to a function via ctrlp.vim interface
+    NeoBundle 'tacahiroy/ctrlp-funky'
+        nnoremap <Leader>fu :CtrlPFunky<Cr>
+        " narrow the list down with a word under cursor
+        nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
     " Generate the Task List.
     NeoBundleLazy 'JessicaKMcIntosh/TagmaTasks', {'autoload': {'commands': 'TagmaTaskToggle'}}
+        let g:TagmaTasksAutoUpdate = 1
         nnoremap <silent> <leader>td :TagmaTaskToggle<CR>
+        nnoremap <silent> <F8> :TagmaTaskToggle<CR>
 
     " Display your undo history in a graph.
     NeoBundleLazy 'mbbill/undotree', {'autoload': {'commands': 'UndotreeToggle'}}
@@ -288,8 +303,9 @@
         let g:pymode_syntax_highlight_equal_operator = 0
         " let g:pymode_python = 'python3'
 
-    NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}}
+    NeoBundleLazy 'davidhalter/jedi-vim', {'autoload': {'filetypes': ['python']}}
         let g:jedi#popup_on_dot=0
+
     NeoBundle 'ervandew/supertab'
 
     NeoBundleLazy 'mitsuhiko/vim-jinja', {'autoload': {'filetypes': ['jinja']}}
@@ -325,9 +341,9 @@
 
     NeoBundle 'Shougo/unite.vim'
         nnoremap <C-l>  :Unite<CR>
-    NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : { 'unite_sources' : ['history/command', 'history/search']}}
-    NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources': 'colorscheme'}}
-    NeoBundleLazy 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}
+    NeoBundleLazy 'thinca/vim-unite-history', {'autoload': {'unite_sources': ['history/command', 'history/search']}}
+    NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload': {'unite_sources': 'colorscheme'}}
+    NeoBundleLazy 'tsukkee/unite-help', {'autoload': {'unite_sources': 'help'}}
 
 " }}}
 
@@ -342,8 +358,7 @@
     NeoBundle '7kfpun/bing.vim'
 
     NeoBundle '7kfpun/finance.vim'
-    set timeoutlen=10000
     autocmd FocusLost * call Finance()
-        let g:finance_watchlist = ['0005.HK', '1211.HK', '1398.HK', '2318.HK', '2800.HK']
+        let g:finance_watchlist = ['0005.HK', '1211.HK', '1398.HK', '2318.HK', '2800.HK', '0388.HK', '1928.HK']
 
 " }}}
