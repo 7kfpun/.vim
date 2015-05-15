@@ -288,6 +288,7 @@
         let g:loaded_syntastic_python_pylama_checker = 0
         let g:loaded_syntastic_python_pylint_checker = 0
         let g:loaded_syntastic_python_python_checker = 0
+        let g:syntastic_javascript_checkers = ['jscs']
     "     let g:syntastic_error_symbol = '✗'
     "     let g:syntastic_style_error_symbol = '✠'
     "     let g:syntastic_warning_symbol = '∆'
