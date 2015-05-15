@@ -276,7 +276,18 @@
         let g:neocomplcache_enable_at_startup=1
         let g:neocomplcache_enable_fuzzy_completion=1
 
-    " NeoBundle 'scrooloose/syntastic'
+    NeoBundle 'scrooloose/syntastic'
+        let g:loaded_syntastic_python_flake8_checker = 0
+        let g:loaded_syntastic_python_frosted_checker = 0
+        let g:loaded_syntastic_python_mypy_checker = 0
+        let g:loaded_syntastic_python_pep257_checker = 0
+        let g:loaded_syntastic_python_pep8_checker = 0
+        let g:loaded_syntastic_python_prospector_checker = 0
+        let g:loaded_syntastic_python_py3kwarn_checker = 0
+        let g:loaded_syntastic_python_pyflakes_checker = 0
+        let g:loaded_syntastic_python_pylama_checker = 0
+        let g:loaded_syntastic_python_pylint_checker = 0
+        let g:loaded_syntastic_python_python_checker = 0
     "     let g:syntastic_error_symbol = '✗'
     "     let g:syntastic_style_error_symbol = '✠'
     "     let g:syntastic_warning_symbol = '∆'
@@ -315,10 +326,10 @@
     NeoBundleLazy 'chase/vim-ansible-yaml', {'autoload': {'filetypes': ['yaml', 'ansible']}}
 
     NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
-    NeoBundleLazy 'heavenshell/vim-jsdoc', {'autoload': {'filetypes': ['javascript']}}
-    NeoBundleLazy 'wookiehangover/jshint.vim', {'autoload': {'filetypes': ['javascript']}}
-        " let g:JSLintHighlightErrorLine = 0
-        let JSHintUpdateWriteOnly = 1
+    " NeoBundleLazy 'heavenshell/vim-jsdoc', {'autoload': {'filetypes': ['javascript']}}
+    " NeoBundleLazy 'wookiehangover/jshint.vim', {'autoload': {'filetypes': ['javascript']}}
+    "     " let g:JSLintHighlightErrorLine = 0
+    "     let JSHintUpdateWriteOnly = 1
     NeoBundleLazy 'maksimr/vim-jsbeautify', {'autoload': {'filetypes': ['javascript']}}
         au FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
         au FileType eruby vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
