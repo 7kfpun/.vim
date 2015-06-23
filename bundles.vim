@@ -24,6 +24,17 @@
     endif
     nmap <leader>a <Esc>:Ack!
 
+    NeoBundle 'dyng/ctrlsf.vim'
+
+    nmap     <C-F>f <Plug>CtrlSFPrompt
+    vmap     <C-F>f <Plug>CtrlSFVwordPath
+    vmap     <C-F>F <Plug>CtrlSFVwordExec
+    nmap     <C-F>n <Plug>CtrlSFCwordPath
+    nmap     <C-F>p <Plug>CtrlSFPwordPath
+    nnoremap <C-F>o :CtrlSFOpen<CR>
+    nnoremap <C-F>t :CtrlSFToggle<CR>
+    inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+
     " Edit large files quickly
     " NeoBundle 'LargeFile'
 
