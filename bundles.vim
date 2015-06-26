@@ -1,4 +1,5 @@
 " Utils {{{
+" n
 " =========
 
     NeoBundle 'mattn/webapi-vim'
@@ -144,6 +145,10 @@
 
 " Edit {{{
 " ========
+
+    " Vim plugin to sort python imports using isort
+    NeoBundleLazy 'fisadev/vim-isort', {'autoload': {'filetypes': ['python']}}
+        nnoremap <C-i> :Isort<CR>
 
     " Vim plugin for intensely orgasmic commenting
     NeoBundle 'scrooloose/nerdcommenter'
