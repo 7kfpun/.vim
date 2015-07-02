@@ -1,5 +1,5 @@
 ack:
-	@sudo apt-get install -y ack-grep exuberant-ctags
+	@sudo apt-get install -y ack-grep exuberant-ctags silversearcher-ag
 	@sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
 
 all: submodule install
