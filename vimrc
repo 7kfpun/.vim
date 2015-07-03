@@ -83,6 +83,7 @@ scriptencoding utf-8
     set smartindent             " enable nice indent
     set expandtab               " tab with spaces
     set smarttab                " indent using shiftwidth"
+    set tabstop=4
     set shiftwidth=4            " number of spaces to use for each step of indent
     set softtabstop=4           " tab like 4 spaces
     set shiftround              " drop unused spaces
@@ -124,7 +125,7 @@ scriptencoding utf-8
     " set keymap=russian-jcukenwin " Alternative keymap
     set iminsert=0               " English by default
     set imsearch=-1              " Search keymap from insert mode
-    set spelllang=en,ru          " Languages
+    set spelllang=en             " Languages
     set encoding=utf-8           " Default encoding
     set fileencodings=utf-8,cp1251,koi8-r,cp866
     set termencoding=utf-8
@@ -315,21 +316,3 @@ autocmd BufWritePre *.py call TrimEndLines()
 autocmd BufWritePre *.py :retab
 
 " }}}
-
-
-" " Bundle 'kshenoy/vim-signature.git'
-" " Bundle 'scrooloose/syntastic'
-
-" Bundle 'Valloric/MatchTagAlways'
-" Bundle 'chrisbra/SudoEdit.vim.git'
-" Bundle 'davidhalter/jedi-vim.git'
-" Bundle 'ervandew/supertab'
-" Bundle 'ingydotnet/yaml-vim'
-" Bundle 'moll/vim-node'
-" Bundle 'sukima/xmledit.git'
-" Bundle 'tpope/vim-endwise'
-" Bundle 'tyru/open-browser.vim'
-
-" " Bundle 'Rykka/InstantRst'
-" " Bundle 'Rykka/clickable.vim'
-" " Bundle 'Rykka/riv.vim'
