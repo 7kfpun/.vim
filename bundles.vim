@@ -391,7 +391,5 @@
     NeoBundle '7kfpun/bing.vim'
 
     NeoBundle '7kfpun/finance.vim'
-    autocmd FocusLost * call Finance()
-        let g:finance_watchlist = ['0005.HK', '1211.HK', '1398.HK', '2318.HK', '2800.HK', '0388.HK', '1928.HK']
 
-" }}}
+    " }}}

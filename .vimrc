@@ -235,6 +235,11 @@ scriptencoding utf-8
 " bundles.vim
 source $HOME/.vim/bundles.vim
 
+" local.vim
+if filereadable("local.vim")
+    source $HOME/.vim/local.vim
+endif
+
 
 " " functions.vim
 " source $HOME/.vim/functions.vim
