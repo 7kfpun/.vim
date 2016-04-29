@@ -1,40 +1,30 @@
 " Utils {{{
-" n
 " =========
 
     NeoBundle 'mattn/webapi-vim'
 
-    " Interactive command execution in Vim.
-    NeoBundle 'Shougo/vimproc.vim', {
-                \ 'build' : {
-                \     'windows' : 'tools\\update-dll-mingw',
-                \     'cygwin' : 'make -f make_cygwin.mak',
-                \     'mac' : 'make -f make_mac.mak',
-                \     'linux' : 'make',
-                \     'unix' : 'gmake',
-                \    },
-                \ }
-
+    " Vim interface to Web API
     NeoBundle 'Yggdroot/indentLine'
         let g:indentLine_char = '┊'
         let g:indentLine_color_term = 239
 
+    " Vim plugin for the Perl module / CLI script 'ack'
     NeoBundle 'mileszs/ack.vim'
     if executable('ag')
         let g:ackprg = "ag --nogroup --column --smart-case --follow"
     endif
     nmap <leader>a <Esc>:Ack!
 
+    " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
     NeoBundle 'dyng/ctrlsf.vim'
-
-    nmap     <C-F>f <Plug>CtrlSFPrompt
-    vmap     <C-F>f <Plug>CtrlSFVwordPath
-    vmap     <C-F>F <Plug>CtrlSFVwordExec
-    nmap     <C-F>n <Plug>CtrlSFCwordPath
-    nmap     <C-F>p <Plug>CtrlSFPwordPath
-    nnoremap <C-F>o :CtrlSFOpen<CR>
-    nnoremap <C-F>t :CtrlSFToggle<CR>
-    inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+    nmap     <c-f>f <Plug>CtrlSFPrompt
+    vmap     <c-f>f <Plug>CtrlSFVwordPath
+    vmap     <c-f>F <Plug>CtrlSFVwordExec
+    nmap     <c-f>n <Plug>CtrlSFCwordPath
+    nmap     <c-f>p <Plug>CtrlSFPwordPath
+    nnoremap <c-f>o :CtrlSFOpen<CR>
+    nnoremap <c-f>t :CtrlSFToggle<CR>
+    inoremap <c-f>t <Esc>:CtrlSFToggle<CR>
 
     " Edit large files quickly
     " NeoBundle 'LargeFile'
@@ -58,15 +48,13 @@
         " noremap <silent> <pageup> :call smooth_scroll#up(&scroll, 0, 2)<CR>
         " noremap <silent> <pagedown> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 
+    " Hyperfocus-writing in Vim
     NeoBundleLazy 'junegunn/limelight.vim', {'autoload': {'commands': 'Limelight'}}
         " au VimEnter * Limelight
 
-    " Screensavers
-    NeoBundleLazy 'itchyny/screensaver.vim', {'autoload': {'commands': 'ScreenSaver'}}
-        " autocmd CursorHold * ScreenSaver
-
     " A calendar application for Vim
     NeoBundleLazy 'itchyny/calendar.vim', {'autoload': {'commands': 'Calendar'}}
+        let g:calendar_first_day = 'sunday'
 
     " Maximizes and restores the current window in Vim.
     NeoBundleLazy 'szw/vim-maximizer', {'autoload': {'commands': 'MaximizerToggle'}}
@@ -74,7 +62,6 @@
         vnoremap <silent><F3> :MaximizerToggle<CR>gv
         inoremap <silent><F3> <C-o>:MaximizerToggle<CR>
 
-    " NeoBundle 'xolox/vim-misc'
     " NeoBundle 'junegunn/vim-easy-align'
 
     " css/less/sass/html color preview for vim.
@@ -85,12 +72,6 @@
 
     " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
     NeoBundle 'hail2u/vim-css3-syntax'
-
-    NeoBundle 'haya14busa/incsearch.vim'
-        let g:incsearch#auto_nohlsearch = 1
-        map /  <Plug>(incsearch-forward)
-        map ?  <Plug>(incsearch-backward)
-        map g/ <Plug>(incsearch-stay)
 
     " Highlight lines or patterns of interest in different colors.
     NeoBundle 'vim-scripts/highlight.vim'
@@ -271,20 +252,6 @@
 " }}}
 
 
-" Unite {{{
-" =========
-
-    " Unite and create user interfaces.
-    NeoBundleLazy 'Shougo/unite.vim', {'autoload': {'commands': 'Unite'}}
-        nnoremap <C-l> :Unite<CR>
-
-    NeoBundle 'junkblocker/unite-tasklist'
-    NeoBundle 'klen/unite-radio.vim'
-    NeoBundle 'moznion/unite-git-conflict.vim'
-
-" }}}
-
-
 " Languages {{{
 " =============
 
@@ -309,9 +276,11 @@
     "     let g:syntastic_style_error_symbol = '✠'
     "     let g:syntastic_warning_symbol = '∆'
     "     let g:syntastic_style_warning_symbol = '≈'
+        let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+        let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go']}
 
-    NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html', 'xhtml', 'css']}}
-    NeoBundleLazy 'vim-scripts/HTML-AutoCloseTag', {'autoload': {'filetypes': ['html', 'xhtml']}}
+    " NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html', 'xhtml', 'css']}}
+    " NeoBundleLazy 'vim-scripts/HTML-AutoCloseTag', {'autoload': {'filetypes': ['html', 'xhtml']}}
     NeoBundleLazy 'mattn/emmet-vim', {'autoload': {'filetypes': ['html', 'xhtml', 'css', 'xml', 'xls', 'markdown']}}
         au BufNewFile,BufRead *.md setf markdown
 
@@ -364,24 +333,38 @@
 
     " Go development plugin for Vim
     NeoBundle 'fatih/vim-go'
+        let g:go_bin_path = "/usr/local/opt/go/bin"
         let g:go_fmt_command = "goimports"  " format with goimports instead of gofmt
         let g:go_fmt_autosave = 0  " disable fmt on save
+        let g:go_highlight_functions = 1
+        let g:go_highlight_methods = 1
+        let g:go_highlight_structs = 1
+        let g:go_highlight_interfaces = 1
+        let g:go_highlight_operators = 1
+        let g:go_highlight_build_constraints = 1
+        au BufRead,BufNewFile *.go set filetype=go
 
 " }}}
 
 
 " Unite {{{
+" =========
 
-    NeoBundle 'Shougo/unite.vim'
-        nnoremap <C-l>  :Unite<CR>
-    NeoBundleLazy 'thinca/vim-unite-history', {'autoload': {'unite_sources': ['history/command', 'history/search']}}
-    NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload': {'unite_sources': 'colorscheme'}}
-    NeoBundleLazy 'tsukkee/unite-help', {'autoload': {'unite_sources': 'help'}}
+    " " Unite and create user interfaces.
+    " NeoBundleLazy 'Shougo/unite.vim', {'autoload': {'commands': 'Unite'}}
+    "     nnoremap <C-l> :Unite<CR>
+
+    " NeoBundle 'junkblocker/unite-tasklist'
+    " NeoBundle 'moznion/unite-git-conflict.vim'
+    " NeoBundleLazy 'thinca/vim-unite-history', {'autoload': {'unite_sources': ['history/command', 'history/search']}}
+    " NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload': {'unite_sources': 'colorscheme'}}
+    " NeoBundleLazy 'tsukkee/unite-help', {'autoload': {'unite_sources': 'help'}}
 
 " }}}
 
 
 " My utils {{{
+" ============
 
     NeoBundleLazy '7kfpun/checkip.vim', {'autoload': {'commands': 'CheckIp'}}
     NeoBundle '7kfpun/pypi.vim'
@@ -392,4 +375,4 @@
 
     NeoBundle '7kfpun/finance.vim'
 
-    " }}}
+" }}}
