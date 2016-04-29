@@ -1,6 +1,8 @@
 " Utils {{{
 " =========
 
+    NeoBundle 'mattn/webapi-vim'
+
     " Interactive command execution in Vim.
     NeoBundle 'Shougo/vimproc.vim', {
                 \ 'build' : {
@@ -22,49 +24,92 @@
     endif
     nmap <leader>a <Esc>:Ack!
 
-    " Edit large files quickly
-    NeoBundle 'LargeFile'
+    NeoBundle 'dyng/ctrlsf.vim'
 
-    " pseudo clipboard register for non-GUI version of Vim 
+    nmap     <C-F>f <Plug>CtrlSFPrompt
+    vmap     <C-F>f <Plug>CtrlSFVwordPath
+    vmap     <C-F>F <Plug>CtrlSFVwordExec
+    nmap     <C-F>n <Plug>CtrlSFCwordPath
+    nmap     <C-F>p <Plug>CtrlSFPwordPath
+    nnoremap <C-F>o :CtrlSFOpen<CR>
+    nnoremap <C-F>t :CtrlSFToggle<CR>
+    inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+
+    " Edit large files quickly
+    " NeoBundle 'LargeFile'
+
+    " pseudo clipboard register for non-GUI version of Vim
     NeoBundle 'unphased/vim-fakeclip'
 
     " Powerful shell implemented by vim.
     NeoBundle 'Shougo/vimshell.vim'
-        nnoremap <silent> <F5> :VimShell<CR>
+        " nnoremap <silent> <F5> :VimShell<CR>
 
-    " Make scrolling in Vim more pleasant. 
+    " Intelligently reopen files where you left off.
+    NeoBundle 'dietsche/vim-lastplace'
+
+    " Make scrolling in Vim more pleasant.
     NeoBundle 'terryma/vim-smooth-scroll'
-        " noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-        " noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-        " noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-        " noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
-        noremap <silent> <pageup> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-        noremap <silent> <pagedown> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+        noremap <silent> <c-k> :call smooth_scroll#up(&scroll/2, 0, 4)<CR>
+        noremap <silent> <c-j> :call smooth_scroll#down(&scroll/2, 0, 4)<CR>
+        noremap <silent> <c-u> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+        noremap <silent> <c-d> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+        " noremap <silent> <pageup> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+        " noremap <silent> <pagedown> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 
     NeoBundleLazy 'junegunn/limelight.vim', {'autoload': {'commands': 'Limelight'}}
         " au VimEnter * Limelight
 
     " Screensavers
-    NeoBundle 'itchyny/screensaver.vim'
+    NeoBundleLazy 'itchyny/screensaver.vim', {'autoload': {'commands': 'ScreenSaver'}}
+        " autocmd CursorHold * ScreenSaver
 
     " A calendar application for Vim
     NeoBundleLazy 'itchyny/calendar.vim', {'autoload': {'commands': 'Calendar'}}
+
+    " Maximizes and restores the current window in Vim.
+    NeoBundleLazy 'szw/vim-maximizer', {'autoload': {'commands': 'MaximizerToggle'}}
+        nnoremap <silent><F3> :MaximizerToggle<CR>
+        vnoremap <silent><F3> :MaximizerToggle<CR>gv
+        inoremap <silent><F3> <C-o>:MaximizerToggle<CR>
+
+    " NeoBundle 'xolox/vim-misc'
+    " NeoBundle 'junegunn/vim-easy-align'
+
+    " css/less/sass/html color preview for vim.
+    NeoBundle 'gorodinskiy/vim-coloresque'
+
+    " Highlight colors in css files
+    NeoBundle 'skammer/vim-css-color'
+
+    " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
+    NeoBundle 'hail2u/vim-css3-syntax'
+
+    NeoBundle 'haya14busa/incsearch.vim'
+        let g:incsearch#auto_nohlsearch = 1
+        map /  <Plug>(incsearch-forward)
+        map ?  <Plug>(incsearch-backward)
+        map g/ <Plug>(incsearch-stay)
+
+    " Highlight lines or patterns of interest in different colors.
+    NeoBundle 'vim-scripts/highlight.vim'
 
 " }}}
 
 
 " Git {{{
+" =======
 
     " A Vim plugin which shows a git diff in the gutter (sign column) and stages/reverts hunks.
     NeoBundle 'airblade/vim-gitgutter'
     NeoBundleLazy 'airblade/vim-gitgutter', {'autoload': {'commands': 'GitGutterToggle'}}
         let g:gitgutter_sign_column_always = 1
         let g:gitgutter_enabled = 1
-        nnoremap <silent> <F9> :GitGutterToggle<CR>
+        " nnoremap <silent> <F9> :GitGutterToggle<CR>
         nnoremap <leader>gg :GitGutterToggle<CR>
 
     " a Git wrapper
-    NeoBundle 'tpope/vim-fugitive' 
+    NeoBundle 'tpope/vim-fugitive'
         nnoremap <silent> <leader>gs :Gstatus<CR>
         nnoremap <silent> <leader>gd :Gdiff<CR>
         nnoremap <silent> <leader>gc :Gcommit<CR>
@@ -75,8 +120,12 @@
         nnoremap <silent> <leader>gr :Gremove<CR>
         au BufReadPost fugitive://* set bufhidden=delete
 
+    " Fugitive extension to manage and merge Git branches
+    NeoBundleLazy 'idanarye/vim-merginal', {'depends': ['tpope/vim-fugitive'], 'autoload': {'commands': 'MerginalToggle'}}
+        nnoremap <silent> <C-F9> :MerginalToggle<CR>
+
     " gitk for Vim
-    NeoBundleLazy 'gregsexton/gitv', {'depends': ['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}} 
+    NeoBundleLazy 'gregsexton/gitv', {'depends': ['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}}
         nnoremap <silent> <leader>gv :Gitv<CR>
         nnoremap <silent> <leader>gV :Gitv!<CR>
 
@@ -85,7 +134,10 @@
 
     " A powerful Git log viewer
     NeoBundleLazy 'cohama/agit.vim', {'autoload': {'commands': 'Agit'}}
-        noremap <silent> <F4> :Agit<CR>
+        noremap <silent> <F9> :Agit<CR>
+
+    " Another git manipulation plugin; An alternative of vim-fugitive.
+    NeoBundleLazy 'lambdalisue/vim-gita', {'autoload': {'commands': ['Gita']}}
 
 " }}}
 
@@ -93,8 +145,12 @@
 " Edit {{{
 " ========
 
+    " Vim plugin to sort python imports using isort
+    NeoBundleLazy 'fisadev/vim-isort', {'autoload': {'filetypes': ['python']}}
+        nnoremap <C-i> :Isort<CR>
+
     " Vim plugin for intensely orgasmic commenting
-    NeoBundle 'scrooloose/nerdcommenter' 
+    NeoBundle 'scrooloose/nerdcommenter'
         let NERDSpaceDelims = 1
         let g:NERDCustomDelimiters = { 'ansible': { 'left': '#'} }
 
@@ -104,12 +160,11 @@
     " True Sublime Text style multiple selections for Vim
     NeoBundle 'terryma/vim-multiple-cursors'
 
-    " visually select increasingly larger regions of text using the same 
+    " visually select increasingly larger regions of text using the same
     " key combination.
     NeoBundle 'terryma/vim-expand-region'
 
-    " The plugin provides mappings to easily delete, change and add such
-    " surroundings in pairs.
+    " The plugin provides mappings to easily delete, change and add such surroundings in pairs.
     NeoBundle 'tpope/vim-surround'
 
     " enable repeating supported plugin maps with "."
@@ -121,6 +176,9 @@
     " Turn your raw template into concated string
     NeoBundleLazy '29decibel/vim-stringify', {'autoload': {'commands': 'Stringify'}}
 
+    " Delete unwanted whitespace at the end of lines.
+    NeoBundleLazy 'vim-scripts/DeleteTrailingWhitespace', {'autoload': {'commands': 'DeleteTrailingWhitespace'}}
+
 " }}}
 
 
@@ -128,7 +186,7 @@
 " ===============
 
     " lean & mean statusline for vim that's light as air
-    NeoBundle 'bling/vim-airline' 
+    NeoBundle 'bling/vim-airline'
         " let g:airline#extensions#tabline#enabled = 1
         let g:airline_detect_iminsert = 1
         let g:airline_left_sep = ''
@@ -146,7 +204,7 @@
 " ==========
 
     " A tree explorer plugin for vim.
-    NeoBundleLazy 'scrooloose/nerdtree', {'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}} 
+    NeoBundleLazy 'scrooloose/nerdtree', {'autoload': {'commands': ['NERDTreeToggle', 'NERDTreeFind']}}
         let g:NERDTreeWinSize = 30
         let g:NERDTreeIgnore = ['\~$', '\.AppleDouble$', '\.beam$', 'build$',
                     \'dist$', '\.DS_Store$', '\.egg$', '\.egg-info$', '\.la$',
@@ -160,9 +218,9 @@
         " Start NERDTree when vim starts up
         au VimEnter * NERDTreeToggle
 
-    NeoBundleLazy 'jistr/vim-nerdtree-tabs', {'autoload': {'commands': 'NERDTreeTabsToggle'}}  
+    NeoBundleLazy 'jistr/vim-nerdtree-tabs', {'autoload': {'commands': 'NERDTreeTabsToggle'}}
         let g:nerdtree_tabs_open_on_console_startup = 1
-        noremap <silent> <F7> :NERDTreeTabsToggle<CR>
+        " map <Leader>n :NERDTreeTabsToggle<CR>
 
     NeoBundleLazy 'majutsushi/tagbar.git', {'autoload': {'commands': ['TagbarToggle']}}
         let g:tagbar_width = 30
@@ -170,37 +228,58 @@
         " let g:tagbar_autofocus = 1  " set focus to TagBar when opening it
         let g:tagbar_type_rst = {
                     \ 'ctagstype': 'rst',
-                    \ 'kinds': [ 'r:references', 'h:headers' ],
+                    \ 'kinds': ['r:references', 'h:headers'],
                     \ 'sort': 0,
                     \ 'sro': '..',
-                    \ 'kind2scope': { 'h': 'header' },
-                    \ 'scope2kind': { 'header': 'h' }
+                    \ 'kind2scope': {'h': 'header'},
+                    \ 'scope2kind': {'header': 'h'}
                     \ }
-        " nnoremap <silent> <F8> :TagbarToggle<CR>
-
+        nnoremap <silent> <C-F6> :TagbarToggle<CR>
         " Start TagbarToggle when vim starts up
         " au VimEnter * TagbarToggle
 
     " Find files
-    NeoBundle 'kien/ctrlp.vim' 
+    NeoBundle 'kien/ctrlp.vim'
         let g:ctrlp_show_hidden = 1
         let g:ctrlp_dont_split = 'NERD_tree_2'
         " let g:ctrlp_map = '<leader>p'
         let g:ctrlp_map = '<c-p>'
         let g:ctrlp_custom_ignore = {
-                    \ 'dir':  '\v[\/]\.(git|hg|svn|env)$',
+                    \ 'dir':  '\v[\/](\.git|\.hg|\.svn|\.env|\.tmp|node_modules|bower_components|vendor)$',
                     \ 'file': '\v\.(exe|so|dll)$',
                     \ 'link': 'some_bad_symbolic_links',
                     \ }
 
-    " Generate the Task List.
-    NeoBundleLazy 'JessicaKMcIntosh/TagmaTasks', {'autoload': {'commands': 'TagmaTaskToggle'}}  
-        nnoremap <silent> <leader>td :TagmaTaskToggle<CR>
+    " Jump to a function via ctrlp.vim interface
+    NeoBundle 'tacahiroy/ctrlp-funky'
+        nnoremap <Leader>fu :CtrlPFunky<Cr>
+        " narrow the list down with a word under cursor
+        nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
-    " Display your undo history in a graph. 
+    " Generate the Task List.
+    NeoBundleLazy 'JessicaKMcIntosh/TagmaTasks', {'autoload': {'commands': 'TagmaTaskToggle'}}
+        let g:TagmaTasksAutoUpdate = 1
+        nnoremap <silent> <leader>td :TagmaTaskToggle<CR>
+        nnoremap <silent> <F8> :TagmaTaskToggle<CR>
+
+    " Display your undo history in a graph.
     NeoBundleLazy 'mbbill/undotree', {'autoload': {'commands': 'UndotreeToggle'}}
         let g:undotree_WindowLayout = 3
         nnoremap <leader>ud :UndotreeToggle<CR>
+
+" }}}
+
+
+" Unite {{{
+" =========
+
+    " Unite and create user interfaces.
+    NeoBundleLazy 'Shougo/unite.vim', {'autoload': {'commands': 'Unite'}}
+        nnoremap <C-l> :Unite<CR>
+
+    NeoBundle 'junkblocker/unite-tasklist'
+    NeoBundle 'klen/unite-radio.vim'
+    NeoBundle 'moznion/unite-git-conflict.vim'
 
 " }}}
 
@@ -212,11 +291,23 @@
         let g:neocomplcache_enable_at_startup=1
         let g:neocomplcache_enable_fuzzy_completion=1
 
-    NeoBundle 'scrooloose/syntastic' 
-        let g:syntastic_error_symbol = '✗'
-        let g:syntastic_style_error_symbol = '✠'
-        let g:syntastic_warning_symbol = '∆'
-        let g:syntastic_style_warning_symbol = '≈'
+    NeoBundle 'scrooloose/syntastic'
+        let g:loaded_syntastic_python_flake8_checker = 0
+        let g:loaded_syntastic_python_frosted_checker = 0
+        let g:loaded_syntastic_python_mypy_checker = 0
+        let g:loaded_syntastic_python_pep257_checker = 0
+        let g:loaded_syntastic_python_pep8_checker = 0
+        let g:loaded_syntastic_python_prospector_checker = 0
+        let g:loaded_syntastic_python_py3kwarn_checker = 0
+        let g:loaded_syntastic_python_pyflakes_checker = 0
+        let g:loaded_syntastic_python_pylama_checker = 0
+        let g:loaded_syntastic_python_pylint_checker = 0
+        let g:loaded_syntastic_python_python_checker = 0
+        let g:syntastic_javascript_checkers = ['jscs']
+    "     let g:syntastic_error_symbol = '✗'
+    "     let g:syntastic_style_error_symbol = '✠'
+    "     let g:syntastic_warning_symbol = '∆'
+    "     let g:syntastic_style_warning_symbol = '≈'
 
     NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html', 'xhtml', 'css']}}
     NeoBundleLazy 'vim-scripts/HTML-AutoCloseTag', {'autoload': {'filetypes': ['html', 'xhtml']}}
@@ -225,19 +316,23 @@
 
     NeoBundleLazy 'heavenshell/vim-pydocstring', {'autoload': {'filetypes': 'python'}}
     NeoBundleLazy 'klen/python-mode.git', {'autoload': {'filetypes': 'python'}}
+        " C901 is too complex
+        " C0110 Exported classes should have docstrings.
+        " C0111 Missing docstring.
         let g:pymode_breakpoint_cmd = "import ipdb; ipdb.set_trace()  # XXX BREAKPOINT"
-        " let g:pymode_lint_checkers = ['pylint', 'pep8', 'pep257', 'pyflakes', 'mccabe']
-        let g:pymode_lint_ignore = 'C901,C0110,C0111'
+        let g:pymode_lint_checkers = ['pep8', 'pep257', 'pyflakes', 'mccabe']
+        let g:pymode_lint_ignore = 'D100,C901,C0110,C0111'
         let g:pymode_lint_sort = ['E', 'C', 'W', 'R', 'I', 'F', 'D']
         let g:pymode_lint_unmodified = 1
-        let g:pymode_options_max_line_length = 80
+        let g:pymode_options_max_line_length = 120
+        let g:pymode_rope = 0
         let g:pymode_rope_lookup_project = 0
         let g:pymode_syntax_highlight_equal_operator = 0
-        let g:pymode_rope_lookup_project = 0
-        let g:pymode_rope=0
         " let g:pymode_python = 'python3'
-    NeoBundleLazy 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}}
+
+    NeoBundleLazy 'davidhalter/jedi-vim', {'autoload': {'filetypes': ['python']}}
         let g:jedi#popup_on_dot=0
+
     NeoBundle 'ervandew/supertab'
 
     NeoBundleLazy 'mitsuhiko/vim-jinja', {'autoload': {'filetypes': ['jinja']}}
@@ -247,18 +342,53 @@
     NeoBundleLazy 'chase/vim-ansible-yaml', {'autoload': {'filetypes': ['yaml', 'ansible']}}
 
     NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
-    NeoBundleLazy 'heavenshell/vim-jsdoc', {'autoload': {'filetypes': ['javascript']}}
-    NeoBundleLazy 'hallettj/jslint.vim', {'autoload': {'filetypes': ['javascript']}}
-        let g:JSLintHighlightErrorLine = 0
+    " NeoBundleLazy 'heavenshell/vim-jsdoc', {'autoload': {'filetypes': ['javascript']}}
+    " NeoBundleLazy 'wookiehangover/jshint.vim', {'autoload': {'filetypes': ['javascript']}}
+    "     " let g:JSLintHighlightErrorLine = 0
+    "     let JSHintUpdateWriteOnly = 1
     NeoBundleLazy 'maksimr/vim-jsbeautify', {'autoload': {'filetypes': ['javascript']}}
-        au FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
-        au FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
-        au FileType eruby vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
         au FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+        au FileType eruby vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+        au FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+        au FileType javascript vnoremap <buffer> <c-f> :call RangeJsBeautify()<cr>
         au BufNewFile,BufRead *.js setf javascript
         au BufNewFile,BufRead *.jsm setf javascript
         au BufNewFile,BufRead Jakefile setf javascript
 
     NeoBundleLazy 'leshill/vim-json', {'autoload': {'filetypes': ['javascript','json']}}
 
+    NeoBundleLazy 'groenewege/vim-less', {'autoload': {'filetypes': 'less'}}
+
+    " NeoBundle 'mxw/vim-jsx'
+
+    " Go development plugin for Vim
+    NeoBundle 'fatih/vim-go'
+        let g:go_fmt_command = "goimports"  " format with goimports instead of gofmt
+        let g:go_fmt_autosave = 0  " disable fmt on save
+
 " }}}
+
+
+" Unite {{{
+
+    NeoBundle 'Shougo/unite.vim'
+        nnoremap <C-l>  :Unite<CR>
+    NeoBundleLazy 'thinca/vim-unite-history', {'autoload': {'unite_sources': ['history/command', 'history/search']}}
+    NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload': {'unite_sources': 'colorscheme'}}
+    NeoBundleLazy 'tsukkee/unite-help', {'autoload': {'unite_sources': 'help'}}
+
+" }}}
+
+
+" My utils {{{
+
+    NeoBundleLazy '7kfpun/checkip.vim', {'autoload': {'commands': 'CheckIp'}}
+    NeoBundle '7kfpun/pypi.vim'
+        let g:enable_add_latest_version = 1
+    " NeoBundleLazy '7kfpun/pypi.vim', {'autoload': {'commands': 'Pypi'}}
+
+    NeoBundle '7kfpun/bing.vim'
+
+    NeoBundle '7kfpun/finance.vim'
+
+    " }}}

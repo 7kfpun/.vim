@@ -3,6 +3,7 @@
 scriptencoding utf-8
 
 " detect OS {{{
+" =============
     let s:is_windows = has('win32') || has('win64')
     let s:is_cygwin = has('win32unix')
     let s:is_macvim = has('gui_macvim')
@@ -10,14 +11,14 @@ scriptencoding utf-8
 
 
 " Setup {{{
-" ======
+" =========
 
     if has('vim_starting')
 
         set nocompatible                           " enable vim features
 
         set backupdir=$HOME/.cache/vim/backup      " where to put backup files
-        set backup                                 " make backup file and leave it around 
+        set backup                                 " make backup file and leave it around
         set backupskip+=svn-commit.tmp,svn-commit.[0-9]*.tmp
 
         set directory=/tmp                         " where to put swap files
@@ -40,6 +41,7 @@ scriptencoding utf-8
         endif
         set rtp+=$HOME/.vim/bundle/neobundle.vim
         let g:neobundle#types#git#clone_depth = 2
+        let g:neobundle#install_process_timeout = 3000
         call neobundle#begin($HOME . '/.vim/bundle')
         NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -52,7 +54,7 @@ scriptencoding utf-8
 
 
 " Options {{{
-" =======
+" ===========
 
     " Buffer options
     set hidden                  " hide buffers when they are abandoned
@@ -74,20 +76,24 @@ scriptencoding utf-8
     set completeopt=menu,preview
     set infercase               " ?
     set cmdheight=2             " ?
+    set nowrap
 
     " Tab options
     set autoindent              " copy indent from previous line
     set smartindent             " enable nice indent
     set expandtab               " tab with spaces
     set smarttab                " indent using shiftwidth"
+    set tabstop=4
     set shiftwidth=4            " number of spaces to use for each step of indent
     set softtabstop=4           " tab like 4 spaces
     set shiftround              " drop unused spaces
 
     autocmd BufRead,BufNewFile *.erb set filetype=eruby
+    autocmd BufRead,BufNewFile *.less set filetype=less
 
     autocmd Filetype html setlocal ts=2 sts=2 sw=2
     autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+    autocmd Filetype less setlocal ts=2 sts=2 sw=2
     autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 
     " Backup and swap files
@@ -119,19 +125,25 @@ scriptencoding utf-8
     " set keymap=russian-jcukenwin " Alternative keymap
     set iminsert=0               " English by default
     set imsearch=-1              " Search keymap from insert mode
-    set spelllang=en,ru          " Languages
+    set spelllang=en             " Languages
     set encoding=utf-8           " Default encoding
     set fileencodings=utf-8,cp1251,koi8-r,cp866
     set termencoding=utf-8
-    set bomb
+    set nobomb
 
     " Wildmenu
     set wildmenu                " use wildmenu ...
     set wildcharm=<TAB>
-    set wildignore=*.pyc        " ignore file pattern
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
-    set wildignore+=*/bower_components/*,*/node_modules/*
+    set wildignore=*.o,*~,*.pyc
+    if has("win16") || has("win32")
+        set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+        set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
+        set wildignore+=*\\bower_components\\*,*\\node_modules\\*
+    else
+        set wildignore+=.git\*,.hg\*,.svn\*
+        set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+        set wildignore+=*/bower_components/*,*/node_modules/*
+    endif
 
     " Undo
     if has('persistent_undo')
@@ -149,6 +161,11 @@ scriptencoding utf-8
     if has('unnamedplus')
         set clipboard+=unnamed     " enable x-clipboard
     endif
+
+    " Mouse enabled
+    " if has('mouse')
+    "     set mouse=a
+    " endif
 
     " Term
     if &term =~ "xterm"
@@ -197,8 +214,6 @@ scriptencoding utf-8
     cmap WA wa
     cmap WAQ waq
 
-    nnoremap <F10> :set invpaste paste?<CR>
-
     " Tab Switching
     noremap <leader>1 1gt
     noremap <leader>2 2gt
@@ -209,11 +224,42 @@ scriptencoding utf-8
     " noremap <C-3> 3gt
     " noremap <C-4> 4gt
 
+    nnoremap <Leader>s :so%<CR>
+
+    " Insert newline without entering insert mode
+    nmap <Leader><CR> o<Esc>k
+
 " }}}
 
 
-" Bundles.vim
+" Misc {{{
+" ========
+
+    " Remove the Windows ^M - when the encodings gets messed up
+    noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+    " Toggle paste mode on and off
+    nnoremap <leader>p :setlocal paste!<cr>
+    " nnoremap <F10> :set invpaste paste?<CR>
+    set pastetoggle=<F10>
+
+    " Set paste, list and swap
+    nnoremap <leader>sp :set paste! paste?<CR>
+    nnoremap <leader>sl :set list! list?<CR>
+    nnoremap <leader>sw :set wrap! wrap?<CR>
+
+    " source my vimrc
+    nnoremap <leader>so :source $MYVIMRC<CR>
+
+" }}}
+
+
+" bundles.vim
 source $HOME/.vim/bundles.vim
+
+
+" " functions.vim
+" source $HOME/.vim/functions.vim
 
 
 " Project settings {{{
@@ -226,6 +272,8 @@ set exrc
 set secure
 
 call neobundle#end()
+
+" }}}
 
 
 " functions {{{
@@ -243,23 +291,28 @@ endfunc
 
 nnoremap <leader>= :call SplitToggle()<cr>
 
+" Removes trailing spaces
+function! TrimWhiteSpace()
+    %s/\s*$//
+    ''
+    :endfunction
+
+set list listchars=trail:.,extends:>
+autocmd FileWritePre * :call TrimWhiteSpace()
+autocmd FileAppendPre * :call TrimWhiteSpace()
+autocmd FilterWritePre * :call TrimWhiteSpace()
+autocmd BufWritePre * :call TrimWhiteSpace()
+
+" Remove ending blank lines
+function! TrimEndLines()
+    let save_cursor = getpos(".")
+    :silent! %s#\($\n\s*\)\+\%$##
+    call setpos('.', save_cursor)
+endfunction
+
+autocmd BufWritePre *.py call TrimEndLines()
+
+" retab python files on write
+autocmd BufWritePre *.py :retab
+
 " }}}
-
-
-
-" " Bundle 'kshenoy/vim-signature.git'
-" " Bundle 'scrooloose/syntastic'
-
-" Bundle 'Valloric/MatchTagAlways'
-" Bundle 'chrisbra/SudoEdit.vim.git'
-" Bundle 'davidhalter/jedi-vim.git'
-" Bundle 'ervandew/supertab'
-" Bundle 'ingydotnet/yaml-vim'
-" Bundle 'moll/vim-node'
-" Bundle 'sukima/xmledit.git'
-" Bundle 'tpope/vim-endwise'
-" Bundle 'tyru/open-browser.vim'
-
-" " Bundle 'Rykka/InstantRst'
-" " Bundle 'Rykka/clickable.vim'
-" " Bundle 'Rykka/riv.vim'
