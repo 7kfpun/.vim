@@ -36,5 +36,6 @@ nosetests.xml
 
 # Vim
 bundle
+plugged
 .netrwhist
 local.vim

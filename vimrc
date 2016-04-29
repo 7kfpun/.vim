@@ -39,11 +39,6 @@ scriptencoding utf-8
         if s:is_windows
             set rtp+=~/.vim
         endif
-        set rtp+=$HOME/.vim/bundle/neobundle.vim
-        let g:neobundle#types#git#clone_depth = 2
-        let g:neobundle#install_process_timeout = 3000
-        call neobundle#begin($HOME . '/.vim/bundle')
-        NeoBundleFetch 'Shougo/neobundle.vim'
 
         filetype plugin indent on
         syntax on
@@ -255,7 +250,8 @@ scriptencoding utf-8
 
 
 " bundles.vim
-source $HOME/.vim/bundles.vim
+" source $HOME/.vim/bundles.vim
+source $HOME/.vim/plugs.vim
 
 
 " " functions.vim
@@ -270,8 +266,6 @@ set exrc
 
 " must be written at the last.  see :help 'secure'.
 set secure
-
-call neobundle#end()
 
 " }}}
 

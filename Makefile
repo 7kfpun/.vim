@@ -3,14 +3,12 @@ library:
 	@sudo pip install isort
 	@sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
 
-all: submodule install
+all: install
 
-submodule:
-	@git submodule update --init --recursive
-
-install: clean
-	@vim +NeoBundleInstall +qall
-	@ln -s $(CURDIR)/.vimrc $(HOME)/.
+install:
+	ln -s $(CURDIR)/.vimrc $(HOME)/.
+	vim +PlugInstall
 
 clean:
+	rm -rf $(CURDIR)/plugged
 	rm -rf $(HOME)/.vimrc
