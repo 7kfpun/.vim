@@ -83,11 +83,13 @@ scriptencoding utf-8
     set softtabstop=4           " tab like 4 spaces
     set shiftround              " drop unused spaces
 
-    autocmd BufRead,BufNewFile *.erb set filetype=eruby
-    autocmd BufRead,BufNewFile *.less set filetype=less
+    autocmd BufRead,BufNewFile,BufReadPre *.erb set filetype=eruby
+    autocmd BufRead,BufNewFile,BufReadPre *.less set filetype=less
+    autocmd BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 
     autocmd Filetype html setlocal ts=2 sts=2 sw=2
     autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+    autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
     autocmd Filetype less setlocal ts=2 sts=2 sw=2
     autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 
