@@ -30,14 +30,10 @@ Instalation
 
         git clone git@github.com:7kfpun/.vim.git ~/.vim
 
-2. Go to cloned directory and init submodules.
+2. Install plugins.
 
-        cd ~/.vim && git submodule update --init --recursive
+        vim +PlugInstall
 
-3. Install plugins.
-
-        vim +NeoBundleInstall +qall
-
-4. Enjoy your vim!
+3. Enjoy your vim!
 
         source ~/.vim/.vimrc
